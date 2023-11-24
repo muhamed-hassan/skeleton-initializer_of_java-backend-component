@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "cmd-args-validation.h"
-#include "launcher.h" // TODO: start working on this unit => ON_PROGRESS
+#include "launcher.h"
 
 using namespace std;
 
@@ -28,7 +28,7 @@ argv[1] is the first command-line argument. The last argument from the command l
 
 # Run the generated executable s below:
 `PATH_TO_EXECUTABLE\EXECUTABLE_NAME arg0 arg1 arg2 ...`
-sampleTest -project-name=sample-project -component-purpose=web-interface -output-directory=%cd%
+<EXECUTABLE_NAME> -project-name=sample-project -component-purpose=web-interface -output-directory=%cd%
 */
 int main(int argc, char *argv[]) {
     if (argc != 4) {

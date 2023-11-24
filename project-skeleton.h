@@ -39,7 +39,7 @@ void generateProjectLayout(string projectName, string outputDirectory) {
 
     string resourcesDirectoryPath ("");
     resourcesDirectoryPath += projectPath;
-    resourcesDirectoryPath += "\\src\\main\\resources";
+    resourcesDirectoryPath += getResourcesDirectoryPath(projectName, outputDirectory);
     mkdirInProjectLayout(resourcesDirectoryPath);
 }
 
@@ -51,9 +51,7 @@ void generateProjectLayout(string projectName, string outputDirectory) {
 */
 void generateAppEntryPoint(string projectName, string outputDirectory) {
     string appEntryPointPath ("");
-    appEntryPointPath += outputDirectory;
-    appEntryPointPath += "\\";
-    appEntryPointPath += projectName;
+    appEntryPointPath += getProjectPath(projectName, outputDirectory);
     appEntryPointPath += "\\src\\main\\java\\com\\app\\Launcher.java";
 
     ofstream outputStreamToAppEntryPointFile (appEntryPointPath);
@@ -84,9 +82,7 @@ void generateAppEntryPoint(string projectName, string outputDirectory) {
 */
 void generateGitignore(string projectName, string outputDirectory) {
     string gitignorePath ("");
-    gitignorePath += outputDirectory;
-    gitignorePath += "\\";
-    gitignorePath += projectName;
+    gitignorePath += getProjectPath(projectName, outputDirectory);
     gitignorePath += "\\.gitignore";
 
     ofstream outputStreamToGitignoreFile (gitignorePath);
@@ -190,9 +186,7 @@ void generateProfilingConfigurationsOfMb(string projectName, string outputDirect
 */
 void generateReadme(string projectName, string outputDirectory) {
     string readmePath ("");
-    readmePath += outputDirectory;
-    readmePath += "\\";
-    readmePath += projectName;
+    readmePath += getProjectPath(projectName, outputDirectory);
     readmePath += "\\README.md";
 
     ofstream outputStreamToReadmeFile (readmePath);
@@ -338,17 +332,19 @@ void generatePomEof(string projectName, string outputDirectory) {
         static-data > README.md
 */
 void generateDbDirectory(string projectName, string outputDirectory) {
+    string projectPath = getProjectPath(projectName, outputDirectory);
+
     string dbDirectoryPath ("");
-    dbDirectoryPath += getProjectPath(projectName, outputDirectory);
+    dbDirectoryPath += projectPath;
     dbDirectoryPath += "\\db";
     mkdirInProjectLayout(dbDirectoryPath);
 
     string schemaDirectoryPath ("");
-    schemaDirectoryPath += getProjectPath(projectName, outputDirectory);
+    schemaDirectoryPath += projectPath;
     schemaDirectoryPath += "\\db\\schema";
     mkdirInProjectLayout(schemaDirectoryPath);
     string readmePathOfSchemaDirectory ("");
-    readmePathOfSchemaDirectory += getProjectPath(projectName, outputDirectory);
+    readmePathOfSchemaDirectory += projectPath;
     readmePathOfSchemaDirectory += "\\db\\schema\\README.md";
     ofstream osToReadmeOfSchemaDirectoryFile (readmePathOfSchemaDirectory);
     osToReadmeOfSchemaDirectoryFile << "Holds numbered-sql-scripts based on the required features ";
@@ -358,11 +354,11 @@ void generateDbDirectory(string projectName, string outputDirectory) {
     osToReadmeOfSchemaDirectoryFile.close();
 
     string staticDataDirectoryPath ("");
-    staticDataDirectoryPath += getProjectPath(projectName, outputDirectory);
+    staticDataDirectoryPath += projectPath;
     staticDataDirectoryPath += "\\db\\static-data";
     mkdirInProjectLayout(staticDataDirectoryPath);
     string readmePathOfstaticDataDirectory ("");
-    readmePathOfstaticDataDirectory += getProjectPath(projectName, outputDirectory);
+    readmePathOfstaticDataDirectory += projectPath;
     readmePathOfstaticDataDirectory += "\\db\\static-data\\README.md";
     ofstream osToReadmeOfstaticDataDirectoryFile (readmePathOfstaticDataDirectory);
     osToReadmeOfstaticDataDirectoryFile << "Holds numbered-sql-scripts based on the required features ";
@@ -381,9 +377,7 @@ void generateDbDirectory(string projectName, string outputDirectory) {
 */
 void generateGitRepositoryStarter(string projectName, string outputDirectory) {
     string gitRepositoryStarterPath ("");
-    gitRepositoryStarterPath += outputDirectory;
-    gitRepositoryStarterPath += "\\";
-    gitRepositoryStarterPath += projectName;
+    gitRepositoryStarterPath += getProjectPath(projectName, outputDirectory);
     gitRepositoryStarterPath += "\\git-repository-starter.txt";
 
     ofstream osToGitRepositoryStarterFile (gitRepositoryStarterPath);

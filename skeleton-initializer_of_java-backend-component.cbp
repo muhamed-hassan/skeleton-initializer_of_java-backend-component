@@ -41,6 +41,7 @@
 		<Unit filename="scheduled-jobs-component.h" />
 		<Unit filename="users-administration-component.h" />
 		<Unit filename="utils.h" />
+		<Unit filename="web-interface-component-files.h" />
 		<Unit filename="web-interface-component-with-messaging.h" />
 		<Unit filename="web-interface-component.h" />
 		<Extensions>
