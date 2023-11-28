@@ -112,4 +112,5 @@ void generateWebInterfaceComponent(string projectName, string outputDirectory) {
     generateWebLayer(projectName, outputDirectory);
     generateDomainLayer(projectName, outputDirectory);
     generatePersistenceLayer(projectName, outputDirectory);
+    generateInfrastructureLayer(projectName, outputDirectory);
 }
