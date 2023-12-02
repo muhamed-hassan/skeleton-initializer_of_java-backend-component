@@ -4,6 +4,8 @@
 using namespace std;
 
 void validateCmdArguments(string projectName, string componentPurpose) {
+    cout << "> Validating CMD arguments" << endl;
+
     regex projectNameAcceptablePattern ("[a-z-_]{10,}");
     bool projectNamePatternCheckFailed = false;
 

@@ -1,5 +1,8 @@
+#include <iostream>
 #include "utils.h"
 #include "web-interface-component-files.h"
+
+using namespace std;
 
 /*
   - `project-name` > src > main >
@@ -14,6 +17,8 @@
             SampleValidator.java
 */
 void generateWebLayer(string projectName, string outputDirectory) {
+    cout << "    > Generating the web layer" << endl;
+
     string projectPath = getProjectPath(projectName, outputDirectory);
 
     string webDirectoryPath ("");
@@ -65,6 +70,8 @@ void generateWebLayer(string projectName, string outputDirectory) {
 Take a copy from "business-component-1"
 */
 void generateDomainLayer(string projectName, string outputDirectory) {
+    cout << "    > Generating the domain layer" << endl;
+
     string domainDirectoryPath ("");
     domainDirectoryPath += getProjectPath(projectName, outputDirectory);
     domainDirectoryPath += getDomainLayerPath(projectName, outputDirectory);
@@ -81,6 +88,8 @@ void generateDomainLayer(string projectName, string outputDirectory) {
         repositories (add repositories that belongs to authorization-layer from business-component-1)
 */
 void generatePersistenceLayer(string projectName, string outputDirectory) {
+    cout << "    > Generating the persistence layer" << endl;
+
     string persistenceDirectoryPath ("");
     persistenceDirectoryPath += getProjectPath(projectName, outputDirectory);
     persistenceDirectoryPath += getPersistenceLayerPath(projectName, outputDirectory);
@@ -102,6 +111,7 @@ void generatePersistenceLayer(string projectName, string outputDirectory) {
 Take a copy from "business-component-1"
 */
 void generateInfrastructureLayer(string projectName, string outputDirectory) {
+    cout << "    > Generating the infrastructure layer" << endl;
 
 }
 
@@ -109,6 +119,7 @@ void generateInfrastructureLayer(string projectName, string outputDirectory) {
 /* *********************************************************************************************** */
 
 void generateWebInterfaceComponent(string projectName, string outputDirectory) {
+    cout << "  > Generating the app layers of web-interface component:" << endl;
     generateWebLayer(projectName, outputDirectory);
     generateDomainLayer(projectName, outputDirectory);
     generatePersistenceLayer(projectName, outputDirectory);

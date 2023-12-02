@@ -1,6 +1,9 @@
+#include <iostream>
 #include <fstream>
 #include <string>
 #include "utils.h"
+
+using namespace std;
 
 /*
 - folder layout of the project that will be generated:
@@ -9,6 +12,8 @@
     resources
 */
 void generateProjectLayout(string projectName, string outputDirectory) {
+    cout << "> Generating project layout:" << endl;
+
     string projectPath = getProjectPath(projectName, outputDirectory);
     mkdirInProjectLayout(projectPath);
 
@@ -46,10 +51,38 @@ void generateProjectLayout(string projectName, string outputDirectory) {
 /* *********************************************************************************************** */
 
 /*
+- Path of "git-repository-starter.txt"
+  - `project-name` > git-repository-starter.txt
+*/
+void generateGitRepositoryStarter(string projectName, string outputDirectory) {
+    cout << "  > Generating git-repository-starter" << endl;
+
+    string gitRepositoryStarterPath ("");
+    gitRepositoryStarterPath += getProjectPath(projectName, outputDirectory);
+    gitRepositoryStarterPath += "\\git-repository-starter.txt";
+
+    ofstream osToGitRepositoryStarterFile (gitRepositoryStarterPath);
+    osToGitRepositoryStarterFile << "1. Create new git repository on git-server.\n";
+    osToGitRepositoryStarterFile << "\n";
+    osToGitRepositoryStarterFile << "2. Use the below commands from the project's root directory";
+    osToGitRepositoryStarterFile << " on your local machine after generating the project's skeleton:\n";
+    osToGitRepositoryStarterFile << "\tgit init\n";
+    osToGitRepositoryStarterFile << "\tgit add .\n";
+    osToGitRepositoryStarterFile << "\tgit commit -m \"add project's skeleton\"\n";
+    osToGitRepositoryStarterFile << "\tgit remote add origin git@github.com:<YOUR_GIT_USERNAME>/<REPOSITORY_NAME>.git\n";
+    osToGitRepositoryStarterFile << "\tgit push -u origin master\n";
+    osToGitRepositoryStarterFile.close();
+}
+
+/* *********************************************************************************************** */
+
+/*
 - Path of "Launcher.java"
   - `project-name` > src > main > java > com > app > Launcher.java
 */
 void generateAppEntryPoint(string projectName, string outputDirectory) {
+    cout << "  > Generating app-entry-point" << endl;
+
     string appEntryPointPath ("");
     appEntryPointPath += getProjectPath(projectName, outputDirectory);
     appEntryPointPath += "\\src\\main\\java\\com\\app\\Launcher.java";
@@ -81,6 +114,8 @@ void generateAppEntryPoint(string projectName, string outputDirectory) {
   - `project-name` > .gitignore
 */
 void generateGitignore(string projectName, string outputDirectory) {
+    cout << "  > Generating .gitignore" << endl;
+
     string gitignorePath ("");
     gitignorePath += getProjectPath(projectName, outputDirectory);
     gitignorePath += "\\.gitignore";
@@ -102,6 +137,8 @@ void generateGitignore(string projectName, string outputDirectory) {
         application.properties, application-local.properties, application-testing.properties, application-production.properties
 */
 void generateProfilingConfigurationsOfDb(string projectName, string outputDirectory) {
+    cout << "  > Generating profiling-configurations of db" << endl;
+
     string commonAppPropertiesPath = getCommonAppPropertiesPath(projectName, outputDirectory);
     ofstream outputStreamToCommonAppPropertiesFile (commonAppPropertiesPath);
     outputStreamToCommonAppPropertiesFile << "# add common app configs here that will be shared later between the 3 profiles of local, testing and production\n";
@@ -142,6 +179,8 @@ void generateProfilingConfigurationsOfDb(string projectName, string outputDirect
         application.properties, application-local.properties, application-testing.properties, application-production.properties
 */
 void generateProfilingConfigurationsOfMb(string projectName, string outputDirectory) {
+    cout << "  > Generating profiling-configurations of mb" << endl;
+
     string commonAppPropertiesPath = getCommonAppPropertiesPath(projectName, outputDirectory);
     ofstream outputStreamToCommonAppPropertiesFile (commonAppPropertiesPath, ofstream::app);
     outputStreamToCommonAppPropertiesFile << "\n";
@@ -185,6 +224,8 @@ void generateProfilingConfigurationsOfMb(string projectName, string outputDirect
   - `project-name` > README.md
 */
 void generateReadme(string projectName, string outputDirectory) {
+    cout << "  > Generating README.md" << endl;
+
     string readmePath ("");
     readmePath += getProjectPath(projectName, outputDirectory);
     readmePath += "\\README.md";
@@ -201,6 +242,8 @@ void generateReadme(string projectName, string outputDirectory) {
   - `project-name` > pom.xml
 */
 void generatePomBof(string projectName, string outputDirectory) {
+    cout << "  > Generating pom.xml BOF" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPomBof (pomPath);
     outputStreamToPomBof << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -229,6 +272,8 @@ void generatePomBof(string projectName, string outputDirectory) {
 }
 
 void addCoreDependencyToPom(string projectName, string outputDirectory) {
+    cout << "    > Adding core-dependency to pom.xml" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
@@ -240,6 +285,8 @@ void addCoreDependencyToPom(string projectName, string outputDirectory) {
 }
 
 void addSecurityDependencyToPom(string projectName, string outputDirectory) {
+    cout << "    > Adding security-dependency to pom.xml" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
@@ -266,6 +313,8 @@ void addSecurityDependencyToPom(string projectName, string outputDirectory) {
 }
 
 void addWebDependencyToPom(string projectName, string outputDirectory) {
+    cout << "    > Adding web-dependency to pom.xml" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
@@ -277,6 +326,8 @@ void addWebDependencyToPom(string projectName, string outputDirectory) {
 }
 
 void addDbDependencyToPom(string projectName, string outputDirectory) {
+    cout << "    > Adding db-dependency to pom.xml" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
@@ -291,6 +342,8 @@ void addDbDependencyToPom(string projectName, string outputDirectory) {
 }
 
 void addMessagingDependencyToPom(string projectName, string outputDirectory) {
+    cout << "    > Adding messaging-dependency to pom.xml" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\n";
@@ -306,6 +359,8 @@ void addMessagingDependencyToPom(string projectName, string outputDirectory) {
 }
 
 void generatePomEof(string projectName, string outputDirectory) {
+    cout << "  > Generating pom.xml EOF" << endl;
+
     string pomPath = getPomPath(projectName, outputDirectory);
     ofstream outputStreamToPomEof (pomPath, ofstream::app);
     outputStreamToPomEof << "\t</dependencies>\n";
@@ -332,6 +387,8 @@ void generatePomEof(string projectName, string outputDirectory) {
         static-data > README.md
 */
 void generateDbDirectory(string projectName, string outputDirectory) {
+    cout << "  > Generating db directory" << endl;
+
     string projectPath = getProjectPath(projectName, outputDirectory);
 
     string dbDirectoryPath ("");
@@ -367,28 +424,4 @@ void generateDbDirectory(string projectName, string outputDirectory) {
     osToReadmeOfstaticDataDirectoryFile << "static data as general-configurations over apps.\n";
     osToReadmeOfstaticDataDirectoryFile << "> File name form: `ticket_number.sql`.\n";
     osToReadmeOfstaticDataDirectoryFile.close();
-}
-
-/* *********************************************************************************************** */
-
-/*
-- Path of "git-repository-starter.txt"
-  - `project-name` > git-repository-starter.txt
-*/
-void generateGitRepositoryStarter(string projectName, string outputDirectory) {
-    string gitRepositoryStarterPath ("");
-    gitRepositoryStarterPath += getProjectPath(projectName, outputDirectory);
-    gitRepositoryStarterPath += "\\git-repository-starter.txt";
-
-    ofstream osToGitRepositoryStarterFile (gitRepositoryStarterPath);
-    osToGitRepositoryStarterFile << "1. Create new git repository on git-server.\n";
-    osToGitRepositoryStarterFile << "\n";
-    osToGitRepositoryStarterFile << "2. Use the below commands from the project's root directory";
-    osToGitRepositoryStarterFile << " on your local machine after generating the project's skeleton:\n";
-    osToGitRepositoryStarterFile << "\tgit init\n";
-    osToGitRepositoryStarterFile << "\tgit add .\n";
-    osToGitRepositoryStarterFile << "\tgit commit -m \"add project's skeleton\"\n";
-    osToGitRepositoryStarterFile << "\tgit remote add origin git@github.com:<YOUR_GIT_USERNAME>/<REPOSITORY_NAME>.git\n";
-    osToGitRepositoryStarterFile << "\tgit push -u origin master\n";
-    osToGitRepositoryStarterFile.close();
 }

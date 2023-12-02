@@ -5,8 +5,6 @@
 
 using namespace std;
 
-//void startComponentGeneration(string projectName, string componentPurpose, string outputDirectory);
-
 /*
 PRE-CONDITION:
 Run this tool on a clean directory where you did not run it before to avoid issues in
@@ -36,11 +34,7 @@ int main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    /*
-    string projectName = "sample-project";
-    string componentPurpose = "web-interface";
-    string outputDirectory = "D:";
-    */
+    cout << "> Extracting CMD arguments" << endl;
     string projectName = argv[1];
     projectName.replace(0, 14, "");
 
