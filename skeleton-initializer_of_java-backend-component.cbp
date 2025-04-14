@@ -32,18 +32,18 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="authentication-component.h" />
-		<Unit filename="cmd-args-validation.h" />
-		<Unit filename="launcher.h" />
+		<Unit filename="components/authentication-component.h" />
+		<Unit filename="components/scheduled-jobs-component-with-messaging.h" />
+		<Unit filename="components/scheduled-jobs-component.h" />
+		<Unit filename="components/users-administration-component.h" />
+		<Unit filename="components/web-interface-component-files.h" />
+		<Unit filename="components/web-interface-component-with-messaging.h" />
+		<Unit filename="components/web-interface-component.h" />
+		<Unit filename="launcher/launcher.h" />
+		<Unit filename="launcher/project-skeleton.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="project-skeleton.h" />
-		<Unit filename="scheduled-jobs-component-with-messaging.h" />
-		<Unit filename="scheduled-jobs-component.h" />
-		<Unit filename="users-administration-component.h" />
-		<Unit filename="utils.h" />
-		<Unit filename="web-interface-component-files.h" />
-		<Unit filename="web-interface-component-with-messaging.h" />
-		<Unit filename="web-interface-component.h" />
+		<Unit filename="utils/cmd-args-validation.h" />
+		<Unit filename="utils/utils.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

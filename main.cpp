@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "cmd-args-validation.h"
-#include "launcher.h"
+#include "./utils/cmd-args-validation.h"
+#include "./launcher/launcher.h"
 
 using namespace std;
 
@@ -34,7 +34,8 @@ int main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    cout << "> Extracting CMD arguments" << endl;
+    cout << "> Handling CMD arguments" << endl;
+    cout << "  > extraction" << endl;
     string projectName = argv[1];
     projectName.replace(0, 14, "");
 
