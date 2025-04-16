@@ -1,3 +1,3 @@
-void generateUsersAdministrationComponent(string projectName, string outputDirectory) {
+void generateUsersAdministrationComponent(string outputDirectory, string projectName) {
 
 }

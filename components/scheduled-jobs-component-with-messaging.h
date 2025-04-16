@@ -1,3 +1,3 @@
-void generateScheduledJobsComponentWithMessaging(string projectName, string outputDirectory) {
+void generateScheduledJobsComponentWithMessaging(string outputDirectory, string projectName) {
 
 }

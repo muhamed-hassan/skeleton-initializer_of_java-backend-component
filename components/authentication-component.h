@@ -1,3 +1,3 @@
-void generateAuthenticationComponent(string projectName, string outputDirectory) {
+void generateAuthenticationComponent(string outputDirectory, string projectName) {
 
 }

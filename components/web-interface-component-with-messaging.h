@@ -1,4 +1,4 @@
-void generateWebInterfaceComponentWithMessaging(string projectName, string outputDirectory) {
+void generateWebInterfaceComponentWithMessaging(string outputDirectory, string projectName) {
 
 }
 

@@ -12,51 +12,58 @@ using namespace std;
 #include "users-administration-component.h"
 */
 
-void startComponentGeneration(string projectName, string componentPurpose, string outputDirectory) {
-    generateProjectLayout(projectName, outputDirectory);
-    generateGitRepositoryStarter(projectName, outputDirectory);
-    generateGitignore(projectName, outputDirectory);
-    generateReadme(projectName, outputDirectory);
-    generateAppEntryPoint(projectName, outputDirectory);
-    generateProfilingConfigurationsOfDb(projectName, outputDirectory);
-    generateDbDirectory(projectName, outputDirectory);
+void startComponentGeneration(string componentPurpose, string outputDirectory, string projectName) {
+    generateProjectLayout(outputDirectory, projectName);
+    generateGitRepositoryStarter(outputDirectory, projectName);
+    generateGitignore(outputDirectory, projectName);
+    generateReadme(outputDirectory, projectName);
+    generateAppEntryPoint(outputDirectory, projectName);
+    generateProfilingConfigurationsOfDb(outputDirectory, projectName);
+    generateDbDirectory(outputDirectory, projectName);
 
-    generatePomBof(projectName, outputDirectory);
+    generatePomBof(outputDirectory, projectName);
     cout << "    > adding dependencies to pom.xml" << endl;
 
     // TODO: start working on this unit
     if (componentPurpose.compare("web-interface") == 0) {
-        addSecurityDependencyToPom(projectName, outputDirectory);
-        addWebDependencyToPom(projectName, outputDirectory);
-        addDbDependencyToPom(projectName, outputDirectory);
-        generateWebInterfaceComponent(projectName, outputDirectory);
+        addSecurityDependencyToPom(outputDirectory, projectName);
+        addWebDependencyToPom(outputDirectory, projectName);
+        addDbDependencyToPom(outputDirectory, projectName);
+        generateWebInterfaceComponent(outputDirectory, projectName);
+
     } else if (componentPurpose.compare("web-interface-with-messaging") == 0) {
-        addSecurityDependencyToPom(projectName, outputDirectory);
-        addWebDependencyToPom(projectName, outputDirectory);
-        addDbDependencyToPom(projectName, outputDirectory);
-        addMessagingDependencyToPom(projectName, outputDirectory);
-        generateProfilingConfigurationsOfMb(projectName, outputDirectory);
-        //generateWebInterfaceComponentWithMessaging(projectName, outputDirectory);
+        addSecurityDependencyToPom(outputDirectory, projectName);
+        addWebDependencyToPom(outputDirectory, projectName);
+        addDbDependencyToPom(outputDirectory, projectName);
+        addMessagingDependencyToPom(outputDirectory, projectName);
+        generateProfilingConfigurationsOfMb(outputDirectory, projectName);
+        //generateWebInterfaceComponentWithMessaging(outputDirectory, projectName);
+
     } else if (componentPurpose.compare("scheduled-jobs") == 0) {
-        addCoreDependencyToPom(projectName, outputDirectory);
-        addDbDependencyToPom(projectName, outputDirectory);
-        //generateScheduledJobsComponent(projectName, outputDirectory);
+        addCoreDependencyToPom(outputDirectory, projectName);
+        addDbDependencyToPom(outputDirectory, projectName);
+        //generateScheduledJobsComponent(outputDirectory, projectName);
+
     } else if (componentPurpose.compare("scheduled-jobs-with-messaging") == 0) {
-        addCoreDependencyToPom(projectName, outputDirectory);
-        addDbDependencyToPom(projectName, outputDirectory);
-        addMessagingDependencyToPom(projectName, outputDirectory);
-        generateProfilingConfigurationsOfMb(projectName, outputDirectory);
-        //generateScheduledJobsComponentWithMessaging(projectName, outputDirectory);
+        addCoreDependencyToPom(outputDirectory, projectName);
+        addDbDependencyToPom(outputDirectory, projectName);
+        addMessagingDependencyToPom(outputDirectory, projectName);
+        generateProfilingConfigurationsOfMb(outputDirectory, projectName);
+        //generateScheduledJobsComponentWithMessaging(outputDirectory, projectName);
+
     } else if (componentPurpose.compare("authentication-component") == 0) {
-        addSecurityDependencyToPom(projectName, outputDirectory);
-        addWebDependencyToPom(projectName, outputDirectory);
-        addDbDependencyToPom(projectName, outputDirectory);
-        //generateAuthenticationComponent(projectName, outputDirectory);
+        addSecurityDependencyToPom(outputDirectory, projectName);
+        addWebDependencyToPom(outputDirectory, projectName);
+        addDbDependencyToPom(outputDirectory, projectName);
+        //generateAuthenticationComponent(outputDirectory, projectName);
+
     } else if (componentPurpose.compare("users-administration-component") == 0) {
-        addSecurityDependencyToPom(projectName, outputDirectory);
-        addWebDependencyToPom(projectName, outputDirectory);
-        addDbDependencyToPom(projectName, outputDirectory);
-        //generateUsersAdministrationComponent(projectName, outputDirectory);
+        addSecurityDependencyToPom(outputDirectory, projectName);
+        addWebDependencyToPom(outputDirectory, projectName);
+        addDbDependencyToPom(outputDirectory, projectName);
+        //generateUsersAdministrationComponent(outputDirectory, projectName);
+
     }
-    generatePomEof(projectName, outputDirectory);
+
+    generatePomEof(outputDirectory, projectName);
 }

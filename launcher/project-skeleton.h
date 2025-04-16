@@ -11,10 +11,10 @@ using namespace std;
     java > com > app
     resources
 */
-void generateProjectLayout(string projectName, string outputDirectory) {
+void generateProjectLayout(string outputDirectory, string projectName) {
     cout << "> Generating project layout:" << endl;
 
-    string projectPath = getProjectPath(projectName, outputDirectory);
+    string projectPath = getProjectPath(outputDirectory, projectName);
     mkdirInProjectLayout(projectPath);
 
     string srcDirectoryPath ("");
@@ -29,22 +29,22 @@ void generateProjectLayout(string projectName, string outputDirectory) {
 
     string javaDirectoryPath ("");
     javaDirectoryPath += projectPath;
-    javaDirectoryPath += "\\src\\main\\java";
+    javaDirectoryPath += getJavaDirectoryPath();
     mkdirInProjectLayout(javaDirectoryPath);
 
     string comDirectoryPath ("");
     comDirectoryPath += projectPath;
-    comDirectoryPath += "\\src\\main\\java\\com";
+    comDirectoryPath += getJavaDirectoryPath() + "\\com";
     mkdirInProjectLayout(comDirectoryPath);
 
     string appDirectoryPath ("");
     appDirectoryPath += projectPath;
-    appDirectoryPath += "\\src\\main\\java\\com\\app";
+    appDirectoryPath += getJavaDirectoryPath() + "\\com\\app";
     mkdirInProjectLayout(appDirectoryPath);
 
     string resourcesDirectoryPath ("");
     resourcesDirectoryPath += projectPath;
-    resourcesDirectoryPath += getResourcesDirectoryPath(projectName, outputDirectory);
+    resourcesDirectoryPath += getResourcesDirectoryPath();
     mkdirInProjectLayout(resourcesDirectoryPath);
 }
 
@@ -54,11 +54,11 @@ void generateProjectLayout(string projectName, string outputDirectory) {
 - Path of "git-repository-starter.txt"
   - `project-name` > git-repository-starter.txt
 */
-void generateGitRepositoryStarter(string projectName, string outputDirectory) {
+void generateGitRepositoryStarter(string outputDirectory, string projectName) {
     cout << "  > git-repository-starter" << endl;
 
     string gitRepositoryStarterPath ("");
-    gitRepositoryStarterPath += getProjectPath(projectName, outputDirectory);
+    gitRepositoryStarterPath += getProjectPath(outputDirectory, projectName);
     gitRepositoryStarterPath += "\\git-repository-starter.txt";
 
     ofstream osToGitRepositoryStarterFile (gitRepositoryStarterPath);
@@ -80,12 +80,12 @@ void generateGitRepositoryStarter(string projectName, string outputDirectory) {
 - Path of "Launcher.java"
   - `project-name` > src > main > java > com > app > Launcher.java
 */
-void generateAppEntryPoint(string projectName, string outputDirectory) {
+void generateAppEntryPoint(string outputDirectory, string projectName) {
     cout << "  > app-entry-point" << endl;
 
     string appEntryPointPath ("");
-    appEntryPointPath += getProjectPath(projectName, outputDirectory);
-    appEntryPointPath += "\\src\\main\\java\\com\\app\\Launcher.java";
+    appEntryPointPath += getProjectPath(outputDirectory, projectName);
+    appEntryPointPath += getJavaDirectoryPath() + "\\com\\app\\Launcher.java";
 
     ofstream outputStreamToAppEntryPointFile (appEntryPointPath);
     outputStreamToAppEntryPointFile << "package com.app;\n";
@@ -113,11 +113,11 @@ void generateAppEntryPoint(string projectName, string outputDirectory) {
 - Path of ".gitignore"
   - `project-name` > .gitignore
 */
-void generateGitignore(string projectName, string outputDirectory) {
+void generateGitignore(string outputDirectory, string projectName) {
     cout << "  > .gitignore" << endl;
 
     string gitignorePath ("");
-    gitignorePath += getProjectPath(projectName, outputDirectory);
+    gitignorePath += getProjectPath(outputDirectory, projectName);
     gitignorePath += "\\.gitignore";
 
     ofstream outputStreamToGitignoreFile (gitignorePath);
@@ -135,11 +135,11 @@ void generateGitignore(string projectName, string outputDirectory) {
 - Path of "README.md"
   - `project-name` > README.md
 */
-void generateReadme(string projectName, string outputDirectory) {
+void generateReadme(string outputDirectory, string projectName) {
     cout << "  > README.md" << endl;
 
     string readmePath ("");
-    readmePath += getProjectPath(projectName, outputDirectory);
+    readmePath += getProjectPath(outputDirectory, projectName);
     readmePath += "\\README.md";
 
     ofstream outputStreamToReadmeFile (readmePath);
@@ -153,10 +153,10 @@ void generateReadme(string projectName, string outputDirectory) {
 - Path of "pom.xml"
   - `project-name` > pom.xml
 */
-void generatePomBof(string projectName, string outputDirectory) {
+void generatePomBof(string outputDirectory, string projectName) {
     cout << "  > pom.xml BOF" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPomBof (pomPath);
     outputStreamToPomBof << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     outputStreamToPomBof << "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n";
@@ -179,10 +179,10 @@ void generatePomBof(string projectName, string outputDirectory) {
     outputStreamToPomBof.close();
 }
 
-void addCoreDependencyToPom(string projectName, string outputDirectory) {
+void addCoreDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > core-dependency" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
@@ -192,10 +192,10 @@ void addCoreDependencyToPom(string projectName, string outputDirectory) {
     outputStreamToPom.close();
 }
 
-void addSecurityDependencyToPom(string projectName, string outputDirectory) {
+void addSecurityDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > security-dependency" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
@@ -220,10 +220,10 @@ void addSecurityDependencyToPom(string projectName, string outputDirectory) {
     outputStreamToPom.close();
 }
 
-void addWebDependencyToPom(string projectName, string outputDirectory) {
+void addWebDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > web-dependency" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
@@ -233,10 +233,10 @@ void addWebDependencyToPom(string projectName, string outputDirectory) {
     outputStreamToPom.close();
 }
 
-void addDbDependencyToPom(string projectName, string outputDirectory) {
+void addDbDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > db-dependency" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>mysql</groupId>\n";
@@ -249,10 +249,10 @@ void addDbDependencyToPom(string projectName, string outputDirectory) {
     outputStreamToPom.close();
 }
 
-void addMessagingDependencyToPom(string projectName, string outputDirectory) {
+void addMessagingDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > messaging-dependency" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\n";
     outputStreamToPom << "\t\t<dependency>\n";
@@ -266,10 +266,10 @@ void addMessagingDependencyToPom(string projectName, string outputDirectory) {
     outputStreamToPom.close();
 }
 
-void generatePomEof(string projectName, string outputDirectory) {
+void generatePomEof(string outputDirectory, string projectName) {
     cout << "  > pom.xml EOF" << endl;
 
-    string pomPath = getPomPath(projectName, outputDirectory);
+    string pomPath = getPomPath();
     ofstream outputStreamToPomEof (pomPath, ofstream::app);
     outputStreamToPomEof << "\t</dependencies>\n";
     outputStreamToPomEof << "\n";
@@ -302,10 +302,10 @@ void generatePomEof(string projectName, string outputDirectory) {
         schema > README.md
         static-data > README.md
 */
-void generateDbDirectory(string projectName, string outputDirectory) {
+void generateDbDirectory(string outputDirectory, string projectName) {
     cout << "  > db directory" << endl;
 
-    string projectPath = getProjectPath(projectName, outputDirectory);
+    string projectPath = getProjectPath(outputDirectory, projectName);
 
     string dbDirectoryPath ("");
     dbDirectoryPath += projectPath;
@@ -316,6 +316,7 @@ void generateDbDirectory(string projectName, string outputDirectory) {
     schemaDirectoryPath += projectPath;
     schemaDirectoryPath += "\\db\\schema";
     mkdirInProjectLayout(schemaDirectoryPath);
+
     string readmePathOfSchemaDirectory ("");
     readmePathOfSchemaDirectory += projectPath;
     readmePathOfSchemaDirectory += "\\db\\schema\\README.md";
@@ -330,6 +331,7 @@ void generateDbDirectory(string projectName, string outputDirectory) {
     staticDataDirectoryPath += projectPath;
     staticDataDirectoryPath += "\\db\\static-data";
     mkdirInProjectLayout(staticDataDirectoryPath);
+
     string readmePathOfstaticDataDirectory ("");
     readmePathOfstaticDataDirectory += projectPath;
     readmePathOfstaticDataDirectory += "\\db\\static-data\\README.md";
@@ -349,41 +351,47 @@ void generateDbDirectory(string projectName, string outputDirectory) {
   - `project-name` > src > main > resources >
         application.properties, application-local.properties, application-testing.properties, application-production.properties
 */
-void generateProfilingConfigurationsOfDb(string projectName, string outputDirectory) {
+void generateProfilingConfigurationsOfDb(string outputDirectory, string projectName) {
     cout << "  > profiling-configurations of db" << endl;
 
-    string commonAppPropertiesPath = getCommonAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToCommonAppPropertiesFile (commonAppPropertiesPath);
-    outputStreamToCommonAppPropertiesFile << "# add common app configs here that will be shared later between the 3 profiles of local, testing and production\n";
-    outputStreamToCommonAppPropertiesFile << "\n";
-    outputStreamToCommonAppPropertiesFile << "# DB connection configs: [Uncomment below configs upon need]\n";
-    outputStreamToCommonAppPropertiesFile << "# spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect\n";
-    outputStreamToCommonAppPropertiesFile << "# spring.datasource.driverClassName=com.mysql.jdbc.Driver\n";
-    outputStreamToCommonAppPropertiesFile.close();
+    string projectPath = getProjectPath(outputDirectory, projectName);
 
-    string localAppPropertiesPath = getLocalAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToLocalAppPropertiesFile (localAppPropertiesPath);
-    outputStreamToLocalAppPropertiesFile << "# DB connection configs: [Uncomment and adjust below configs upon need]\n";
-    outputStreamToLocalAppPropertiesFile << "# spring.datasource.url=jdbc:mysql://localhost:3306/<SCHEMA-NAME>\n";
-    outputStreamToLocalAppPropertiesFile << "# spring.datasource.username=<USERNAME>\n";
-    outputStreamToLocalAppPropertiesFile << "# spring.datasource.password=<PASSWORD>\n";
-    outputStreamToLocalAppPropertiesFile.close();
+    string commonPropertiesPath = ("");
+    commonPropertiesPath += projectPath + getResourcesDirectoryPath() + getCommonPropertiesPath();
+    ofstream osToCommonPropertiesFile (commonPropertiesPath);
+    osToCommonPropertiesFile << "# add common app configs here that will be shared later between the 3 profiles of local, testing and production\n";
+    osToCommonPropertiesFile << "\n";
+    osToCommonPropertiesFile << "# DB connection configs: [Uncomment below configs upon need]\n";
+    osToCommonPropertiesFile << "# spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect\n";
+    osToCommonPropertiesFile << "# spring.datasource.driverClassName=com.mysql.jdbc.Driver\n";
+    osToCommonPropertiesFile.close();
 
-    string testingAppPropertiesPath = getTestingAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToTestingAppPropertiesFile (testingAppPropertiesPath);
-    outputStreamToTestingAppPropertiesFile << "# DB connection configs: [Uncomment and adjust below configs upon need]\n";
-    outputStreamToTestingAppPropertiesFile << "# spring.datasource.url=jdbc:mysql://<DNS-OF-DB>/<SCHEMA-NAME>\n";
-    outputStreamToTestingAppPropertiesFile << "# spring.datasource.username=<USERNAME>\n";
-    outputStreamToTestingAppPropertiesFile << "# spring.datasource.password=<PASSWORD>\n";
-    outputStreamToTestingAppPropertiesFile.close();
+    string localProfilePropertiesPath = ("");
+    localProfilePropertiesPath += projectPath + getResourcesDirectoryPath() + getLocalProfilePropertiesPath();
+    ofstream osToLocalProfilePropertiesFile (localProfilePropertiesPath);
+    osToLocalProfilePropertiesFile << "# DB connection configs: [Uncomment and adjust below configs upon need]\n";
+    osToLocalProfilePropertiesFile << "# spring.datasource.url=jdbc:mysql://localhost:3306/<SCHEMA-NAME>\n";
+    osToLocalProfilePropertiesFile << "# spring.datasource.username=<USERNAME>\n";
+    osToLocalProfilePropertiesFile << "# spring.datasource.password=<PASSWORD>\n";
+    osToLocalProfilePropertiesFile.close();
 
-    string productionAppPropertiesPath = getProductionAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToProductionAppPropertiesFile (productionAppPropertiesPath);
-    outputStreamToProductionAppPropertiesFile << "# DB connection configs: [Uncomment and adjust below configs upon need]\n";
-    outputStreamToProductionAppPropertiesFile << "# spring.datasource.url=jdbc:mysql://<DNS-OF-DB>/<SCHEMA-NAME>\n";
-    outputStreamToProductionAppPropertiesFile << "# spring.datasource.username=<USERNAME>\n";
-    outputStreamToProductionAppPropertiesFile << "# spring.datasource.password=<PASSWORD>\n";
-    outputStreamToProductionAppPropertiesFile.close();
+    string testingProfilePropertiesPath = ("");
+    testingProfilePropertiesPath += projectPath + getResourcesDirectoryPath() + getTestingProfilePropertiesPath();
+    ofstream osToTestingProfilePropertiesFile (testingProfilePropertiesPath);
+    osToTestingProfilePropertiesFile << "# DB connection configs: [Uncomment and adjust below configs upon need]\n";
+    osToTestingProfilePropertiesFile << "# spring.datasource.url=jdbc:mysql://<DNS-OF-DB>/<SCHEMA-NAME>\n";
+    osToTestingProfilePropertiesFile << "# spring.datasource.username=<USERNAME>\n";
+    osToTestingProfilePropertiesFile << "# spring.datasource.password=<PASSWORD>\n";
+    osToTestingProfilePropertiesFile.close();
+
+    string productionProfilePropertiesPath = ("");
+    productionProfilePropertiesPath += projectPath + getResourcesDirectoryPath() + getProductionProfilePropertiesPath();
+    ofstream osToProductionProfilePropertiesFile (productionProfilePropertiesPath);
+    osToProductionProfilePropertiesFile << "# DB connection configs: [Uncomment and adjust below configs upon need]\n";
+    osToProductionProfilePropertiesFile << "# spring.datasource.url=jdbc:mysql://<DNS-OF-DB>/<SCHEMA-NAME>\n";
+    osToProductionProfilePropertiesFile << "# spring.datasource.username=<USERNAME>\n";
+    osToProductionProfilePropertiesFile << "# spring.datasource.password=<PASSWORD>\n";
+    osToProductionProfilePropertiesFile.close();
 }
 
 /*
@@ -391,41 +399,47 @@ void generateProfilingConfigurationsOfDb(string projectName, string outputDirect
   - `project-name` > src > main > resources >
         application.properties, application-local.properties, application-testing.properties, application-production.properties
 */
-void generateProfilingConfigurationsOfMb(string projectName, string outputDirectory) {
+void generateProfilingConfigurationsOfMb(string outputDirectory, string projectName) {
     cout << "  > profiling-configurations of mb" << endl;
 
-    string commonAppPropertiesPath = getCommonAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToCommonAppPropertiesFile (commonAppPropertiesPath, ofstream::app);
-    outputStreamToCommonAppPropertiesFile << "\n";
-    outputStreamToCommonAppPropertiesFile << "# MB connection configs: [Uncomment below configs upon need]\n";
-    outputStreamToCommonAppPropertiesFile << "# 1 APP is made for 1 QUEUE\n";
-    outputStreamToCommonAppPropertiesFile << "# jms.activemq.queue=<QUEUE-NAME>\n";
-    outputStreamToCommonAppPropertiesFile.close();
+    string projectPath = getProjectPath(outputDirectory, projectName);
 
-    string localAppPropertiesPath = getLocalAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToLocalAppPropertiesFile (localAppPropertiesPath, ofstream::app);
-    outputStreamToLocalAppPropertiesFile << "\n";
-    outputStreamToLocalAppPropertiesFile << "# MB connection configs: [Uncomment and adjust below configs upon need]\n";
-    outputStreamToLocalAppPropertiesFile << "# spring.activemq.broker-url=tcp://localhost:61616\n";
-    outputStreamToLocalAppPropertiesFile << "# spring.activemq.user=<USERNAME>\n";
-    outputStreamToLocalAppPropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
-    outputStreamToLocalAppPropertiesFile.close();
+    string commonPropertiesPath = ("");
+    commonPropertiesPath += projectPath + getResourcesDirectoryPath() + getCommonPropertiesPath();
+    ofstream osToCommonPropertiesFile (commonPropertiesPath, ofstream::app);
+    osToCommonPropertiesFile << "\n";
+    osToCommonPropertiesFile << "# MB connection configs: [Uncomment below configs upon need]\n";
+    osToCommonPropertiesFile << "# 1 APP is made for 1 QUEUE\n";
+    osToCommonPropertiesFile << "# jms.activemq.queue=<QUEUE-NAME>\n";
+    osToCommonPropertiesFile.close();
 
-    string testingAppPropertiesPath = getTestingAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToTestingAppPropertiesFile (testingAppPropertiesPath, ofstream::app);
-    outputStreamToTestingAppPropertiesFile << "\n";
-    outputStreamToTestingAppPropertiesFile << "# MB connection configs: [Uncomment and adjust below configs upon need]\n";
-    outputStreamToTestingAppPropertiesFile << "# spring.activemq.broker-url=tcp://<DNS-OF-MB>\n";
-    outputStreamToTestingAppPropertiesFile << "# spring.activemq.user=<USERNAME>\n";
-    outputStreamToTestingAppPropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
-    outputStreamToTestingAppPropertiesFile.close();
+    string localProfilePropertiesPath = ("");
+    localProfilePropertiesPath += projectPath + getResourcesDirectoryPath() + getLocalProfilePropertiesPath();
+    ofstream osToLocalProfilePropertiesFile (localProfilePropertiesPath, ofstream::app);
+    osToLocalProfilePropertiesFile << "\n";
+    osToLocalProfilePropertiesFile << "# MB connection configs: [Uncomment and adjust below configs upon need]\n";
+    osToLocalProfilePropertiesFile << "# spring.activemq.broker-url=tcp://localhost:61616\n";
+    osToLocalProfilePropertiesFile << "# spring.activemq.user=<USERNAME>\n";
+    osToLocalProfilePropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
+    osToLocalProfilePropertiesFile.close();
 
-    string productionAppPropertiesPath = getProductionAppPropertiesPath(projectName, outputDirectory);
-    ofstream outputStreamToProductionAppPropertiesFile (productionAppPropertiesPath, ofstream::app);
-    outputStreamToProductionAppPropertiesFile << "\n";
-    outputStreamToProductionAppPropertiesFile << "# MB connection configs: [Uncomment and adjust below configs upon need]\n";
-    outputStreamToProductionAppPropertiesFile << "# spring.activemq.broker-url=tcp://<DNS-OF-MB>\n";
-    outputStreamToProductionAppPropertiesFile << "# spring.activemq.user=<USERNAME>\n";
-    outputStreamToProductionAppPropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
-    outputStreamToProductionAppPropertiesFile.close();
+    string testingProfilePropertiesPath = ("");
+    testingProfilePropertiesPath += projectPath + getResourcesDirectoryPath() + getTestingProfilePropertiesPath();
+    ofstream osToTestingProfilePropertiesFile (testingProfilePropertiesPath, ofstream::app);
+    osToTestingProfilePropertiesFile << "\n";
+    osToTestingProfilePropertiesFile << "# MB connection configs: [Uncomment and adjust below configs upon need]\n";
+    osToTestingProfilePropertiesFile << "# spring.activemq.broker-url=tcp://<DNS-OF-MB>\n";
+    osToTestingProfilePropertiesFile << "# spring.activemq.user=<USERNAME>\n";
+    osToTestingProfilePropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
+    osToTestingProfilePropertiesFile.close();
+
+    string productionProfilePropertiesPath = ("");
+    productionProfilePropertiesPath += projectPath + getResourcesDirectoryPath() + getProductionProfilePropertiesPath();
+    ofstream osToProductionProfilePropertiesFile (productionProfilePropertiesPath, ofstream::app);
+    osToProductionProfilePropertiesFile << "\n";
+    osToProductionProfilePropertiesFile << "# MB connection configs: [Uncomment and adjust below configs upon need]\n";
+    osToProductionProfilePropertiesFile << "# spring.activemq.broker-url=tcp://<DNS-OF-MB>\n";
+    osToProductionProfilePropertiesFile << "# spring.activemq.user=<USERNAME>\n";
+    osToProductionProfilePropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
+    osToProductionProfilePropertiesFile.close();
 }

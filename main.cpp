@@ -24,9 +24,16 @@ argv[1] is the first command-line argument. The last argument from the command l
 # Navigate into project's root directory:
 `g++ main.cpp -o <EXECUTABLE_NAME>`
 
-# Run the generated executable s below:
+# Run the generated executables below:
 `PATH_TO_EXECUTABLE\EXECUTABLE_NAME arg0 arg1 arg2 ...`
-<EXECUTABLE_NAME> -project-name=sample-project -component-purpose=web-interface -output-directory=%cd%
+<EXECUTABLE_NAME> -component-purpose=web-interface -output-directory=%cd% -project-name=sample-project
+
+
+# In action, use the below:
+
+g++ main.cpp -o skeleton-initializer_of_java-backend-component
+
+skeleton-initializer_of_java-backend-component -component-purpose=web-interface -output-directory=%cd% -project-name=sample-project
 */
 int main(int argc, char *argv[]) {
     if (argc != 4) {
@@ -36,18 +43,19 @@ int main(int argc, char *argv[]) {
 
     cout << "> Handling CMD arguments" << endl;
     cout << "  > extraction" << endl;
-    string projectName = argv[1];
-    projectName.replace(0, 14, "");
 
-    string componentPurpose = argv[2];
+    string componentPurpose = argv[1];
     componentPurpose.replace(0, 19, "");
 
-    string outputDirectory = argv[3];
+    string outputDirectory = argv[2];
     outputDirectory.replace(0, 18, "");
 
-    validateCmdArguments(projectName, componentPurpose);
+    string projectName = argv[3];
+    projectName.replace(0, 14, "");
 
-    startComponentGeneration(projectName, componentPurpose, outputDirectory);
+    validateCmdArguments(componentPurpose, projectName);
+
+    startComponentGeneration(componentPurpose, outputDirectory, projectName);
 
     return 0;
 }

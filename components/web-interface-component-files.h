@@ -4,10 +4,10 @@
 - Path of "SampleController.java"
   - `project-name` > src > main > java > com > app > web > controllers > SampleController.java
 */
-void generateSampleController(string projectName, string outputDirectory) {
+void generateSampleController(string outputDirectory, string projectName) {
     string sampleControllerPath ("");
-    sampleControllerPath += getProjectPath(projectName, outputDirectory);
-    sampleControllerPath += getWebLayerPath(projectName, outputDirectory);
+    sampleControllerPath += getProjectPath(outputDirectory, projectName);
+    sampleControllerPath += getWebLayerPath();
     sampleControllerPath += "\\controllers\\SampleController.java";
 
     ofstream osToSampleControllerFile (sampleControllerPath);
@@ -74,10 +74,10 @@ void generateSampleController(string projectName, string outputDirectory) {
 - Path of "RestErrorHandler.java"
   - `project-name` > src > main > java > com > app > web > error_handler > RestErrorHandler.java
 */
-void generateRestErrorHandler(string projectName, string outputDirectory) {
+void generateRestErrorHandler(string outputDirectory, string projectName) {
     string restErrorHandlerPath ("");
-    restErrorHandlerPath += getProjectPath(projectName, outputDirectory);
-    restErrorHandlerPath += getWebLayerPath(projectName, outputDirectory);
+    restErrorHandlerPath += getProjectPath(outputDirectory, projectName);
+    restErrorHandlerPath += getWebLayerPath();
     restErrorHandlerPath += "\\error_handler\\RestErrorHandler.java";
 
     ofstream osToRestErrorHandlerFile (restErrorHandlerPath);
@@ -135,10 +135,10 @@ void generateRestErrorHandler(string projectName, string outputDirectory) {
 - Path of "SampleValidator.java"
   - `project-name` > src > main > java > com > app > web > validators > SampleValidator.java
 */
-void generateSampleValidator(string projectName, string outputDirectory) {
+void generateSampleValidator(string outputDirectory, string projectName) {
     string sampleValidatorPath ("");
-    sampleValidatorPath += getProjectPath(projectName, outputDirectory);
-    sampleValidatorPath += getWebLayerPath(projectName, outputDirectory);
+    sampleValidatorPath += getProjectPath(outputDirectory, projectName);
+    sampleValidatorPath += getWebLayerPath();
     sampleValidatorPath += "\\validators\\SampleValidator.java";
 
     ofstream osToSampleValidatorFile (sampleValidatorPath);
@@ -179,10 +179,10 @@ void generateSampleValidator(string projectName, string outputDirectory) {
 - Path of "UserService.java"
   - `project-name` > src > main > java > com > app > domain > UserService.java
 */
-void generateUserService(string projectName, string outputDirectory) {
+void generateUserService(string outputDirectory, string projectName) {
     string userServicePath ("");
-    userServicePath += getProjectPath(projectName, outputDirectory);
-    userServicePath += getDomainLayerPath(projectName, outputDirectory);
+    userServicePath += getProjectPath(outputDirectory, projectName);
+    userServicePath += getDomainLayerPath();
     userServicePath += "\\UserService.java";
 
     ofstream osToUserServiceFile (userServicePath);
@@ -238,10 +238,10 @@ void generateUserService(string projectName, string outputDirectory) {
 - Path of "CustomGrantedAuthority.java"
   - `project-name` > src > main > java > com > app > persistence > entities > CustomGrantedAuthority.java
 */
-void generateCustomGrantedAuthorityEntity(string projectName, string outputDirectory) {
+void generateCustomGrantedAuthorityEntity(string outputDirectory, string projectName) {
     string customGrantedAuthorityEntityPath ("");
-    customGrantedAuthorityEntityPath += getProjectPath(projectName, outputDirectory);
-    customGrantedAuthorityEntityPath += getPersistenceLayerPath(projectName, outputDirectory);
+    customGrantedAuthorityEntityPath += getProjectPath(outputDirectory, projectName);
+    customGrantedAuthorityEntityPath += getPersistenceLayerPath();
     customGrantedAuthorityEntityPath += "\\entities\\CustomGrantedAuthority.java";
 
     ofstream osToCustomGrantedAuthorityEntityFile (customGrantedAuthorityEntityPath);
@@ -332,10 +332,10 @@ void generateCustomGrantedAuthorityEntity(string projectName, string outputDirec
 - Path of "ScreenType.java"
   - `project-name` > src > main > java > com > app > persistence > entities > ScreenType.java
 */
-void generateScreenTypeEntity(string projectName, string outputDirectory) {
+void generateScreenTypeEntity(string outputDirectory, string projectName) {
     string screenTypeEntityPath ("");
-    screenTypeEntityPath += getProjectPath(projectName, outputDirectory);
-    screenTypeEntityPath += getPersistenceLayerPath(projectName, outputDirectory);
+    screenTypeEntityPath += getProjectPath(outputDirectory, projectName);
+    screenTypeEntityPath += getPersistenceLayerPath();
     screenTypeEntityPath += "\\entities\\ScreenType.java";
 
     ofstream osToScreenTypeEntityFile (screenTypeEntityPath);
@@ -403,10 +403,10 @@ void generateScreenTypeEntity(string projectName, string outputDirectory) {
 - Path of "SystemActor.java"
   - `project-name` > src > main > java > com > app > persistence > entities > SystemActor.java
 */
-void generateSystemActorEntity(string projectName, string outputDirectory) {
+void generateSystemActorEntity(string outputDirectory, string projectName) {
     string systemActorEntityPath ("");
-    systemActorEntityPath += getProjectPath(projectName, outputDirectory);
-    systemActorEntityPath += getPersistenceLayerPath(projectName, outputDirectory);
+    systemActorEntityPath += getProjectPath(outputDirectory, projectName);
+    systemActorEntityPath += getPersistenceLayerPath();
     systemActorEntityPath += "\\entities\\SystemActor.java";
 
     ofstream osToSystemActorEntityFile (systemActorEntityPath);
@@ -488,10 +488,10 @@ void generateSystemActorEntity(string projectName, string outputDirectory) {
 - Path of "SystemSecurityConfiguration.java"
   - `project-name` > src > main > java > com > app > persistence > entities > SystemSecurityConfiguration.java
 */
-void generateSystemSecurityConfigurationEntity(string projectName, string outputDirectory) {
+void generateSystemSecurityConfigurationEntity(string outputDirectory, string projectName) {
     string systemSecurityConfigurationEntityPath ("");
-    systemSecurityConfigurationEntityPath += getProjectPath(projectName, outputDirectory);
-    systemSecurityConfigurationEntityPath += getPersistenceLayerPath(projectName, outputDirectory);
+    systemSecurityConfigurationEntityPath += getProjectPath(outputDirectory, projectName);
+    systemSecurityConfigurationEntityPath += getPersistenceLayerPath();
     systemSecurityConfigurationEntityPath += "\\entities\\SystemSecurityConfiguration.java";
 
     ofstream osToSystemSecurityConfigurationEntityFile (systemSecurityConfigurationEntityPath);
@@ -575,10 +575,10 @@ void generateSystemSecurityConfigurationEntity(string projectName, string output
 - Path of "UiScreen.java"
   - `project-name` > src > main > java > com > app > persistence > entities > UiScreen.java
 */
-void generateUiScreenEntity(string projectName, string outputDirectory) {
+void generateUiScreenEntity(string outputDirectory, string projectName) {
     string uiScreenEntityPath ("");
-    uiScreenEntityPath += getProjectPath(projectName, outputDirectory);
-    uiScreenEntityPath += getPersistenceLayerPath(projectName, outputDirectory);
+    uiScreenEntityPath += getProjectPath(outputDirectory, projectName);
+    uiScreenEntityPath += getPersistenceLayerPath();
     uiScreenEntityPath += "\\entities\\UiScreen.java";
 
     ofstream osToUiScreenEntityFile (uiScreenEntityPath);
@@ -662,10 +662,10 @@ void generateUiScreenEntity(string projectName, string outputDirectory) {
 - Path of "User.java"
   - `project-name` > src > main > java > com > app > persistence > entities > User.java
 */
-void generateUserEntity(string projectName, string outputDirectory) {
+void generateUserEntity(string outputDirectory, string projectName) {
     string userEntityPath ("");
-    userEntityPath += getProjectPath(projectName, outputDirectory);
-    userEntityPath += getPersistenceLayerPath(projectName, outputDirectory);
+    userEntityPath += getProjectPath(outputDirectory, projectName);
+    userEntityPath += getPersistenceLayerPath();
     userEntityPath += "\\entities\\User.java";
 
     ofstream osToUserEntityFile (userEntityPath);
@@ -834,21 +834,20 @@ void generateUserEntity(string projectName, string outputDirectory) {
 }
 
 /*
-  - `project-name` > src > main >
-    java > com > app > persistence >
-        entities (add entities that belongs to authorization-layer from business-component-1)
-        repositories (add repositories that belongs to authorization-layer from business-component-1)
+  - `project-name` > src > main > java > com > app > persistence >
+       entities (add entities that belongs to authorization-layer from business-component-1)
+       repositories (add repositories that belongs to authorization-layer from business-component-1)
 */
 
-void generateEntitiesOfAuthorizationLayer(string projectName, string outputDirectory) {
-    generateCustomGrantedAuthorityEntity(projectName, outputDirectory);
-    generateScreenTypeEntity(projectName, outputDirectory);
-    generateSystemActorEntity(projectName, outputDirectory);
-    generateSystemSecurityConfigurationEntity(projectName, outputDirectory);
-    generateUiScreenEntity(projectName, outputDirectory);
-    generateUserEntity(projectName, outputDirectory);
+void generateEntitiesOfAuthorizationLayer(string outputDirectory, string projectName) {
+    generateCustomGrantedAuthorityEntity(outputDirectory, projectName);
+    generateScreenTypeEntity(outputDirectory, projectName);
+    generateSystemActorEntity(outputDirectory, projectName);
+    generateSystemSecurityConfigurationEntity(outputDirectory, projectName);
+    generateUiScreenEntity(outputDirectory, projectName);
+    generateUserEntity(outputDirectory, projectName);
 }
 
-void generateRepositoriesOfAuthorizationLayer(string projectName, string outputDirectory) {
+void generateRepositoriesOfAuthorizationLayer(string outputDirectory, string projectName) {
 
 }
