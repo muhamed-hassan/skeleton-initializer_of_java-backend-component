@@ -32,10 +32,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="components/authentication-component.h" />
-		<Unit filename="components/scheduled-jobs-component-with-messaging.h" />
-		<Unit filename="components/scheduled-jobs-component.h" />
-		<Unit filename="components/users-administration-component.h" />
 		<Unit filename="components/web-interface-component-files.h" />
 		<Unit filename="components/web-interface-component-with-messaging.h" />
 		<Unit filename="components/web-interface-component.h" />
