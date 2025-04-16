@@ -5,11 +5,7 @@
 using namespace std;
 
 /*
-#include "web-interface-component-with-messaging.h"
-#include "scheduled-jobs-component.h"
-#include "scheduled-jobs-component-with-messaging.h"
-#include "authentication-component.h"
-#include "users-administration-component.h"
+#include "../components/web-interface-component-with-messaging.h"
 */
 
 void startComponentGeneration(string componentPurpose, string outputDirectory, string projectName) {
