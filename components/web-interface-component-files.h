@@ -1,14 +1,14 @@
 #include "../utils/utils.h"
 
 /*
-- Path of "SampleController.java"
-  - `project-name` > src > main > java > com > app > web > controllers > SampleController.java
+- Path of "SampleController"
+  - `project-name` > src > main > java > com > app > web > controllers > SampleController
 */
 void generateSampleController(string outputDirectory, string projectName) {
     string sampleControllerPath ("");
     sampleControllerPath += getProjectPath(outputDirectory, projectName);
     sampleControllerPath += getWebLayerPath();
-    sampleControllerPath += "\\controllers\\SampleController.java";
+    sampleControllerPath += "\\controllers\\SampleController";
 
     ofstream osToSampleControllerFile (sampleControllerPath);
     osToSampleControllerFile << "// ABSTRACT EXAMPLE\n";
@@ -71,14 +71,14 @@ void generateSampleController(string outputDirectory, string projectName) {
 }
 
 /*
-- Path of "RestErrorHandler.java"
-  - `project-name` > src > main > java > com > app > web > error_handler > RestErrorHandler.java
+- Path of "SampleRestErrorHandler"
+  - `project-name` > src > main > java > com > app > web > error_handler > SampleRestErrorHandler
 */
-void generateRestErrorHandler(string outputDirectory, string projectName) {
+void generateSampleRestErrorHandler(string outputDirectory, string projectName) {
     string restErrorHandlerPath ("");
     restErrorHandlerPath += getProjectPath(outputDirectory, projectName);
     restErrorHandlerPath += getWebLayerPath();
-    restErrorHandlerPath += "\\error_handler\\RestErrorHandler.java";
+    restErrorHandlerPath += "\\error_handler\\SampleRestErrorHandler";
 
     ofstream osToRestErrorHandlerFile (restErrorHandlerPath);
     osToRestErrorHandlerFile << "// ABSTRACT EXAMPLE\n";
@@ -95,7 +95,7 @@ void generateRestErrorHandler(string outputDirectory, string projectName) {
     osToRestErrorHandlerFile << "import org.springframework.web.bind.annotation.ExceptionHandler;\n";
     osToRestErrorHandlerFile << "\n";
     osToRestErrorHandlerFile << "@ControllerAdvice\n";
-    osToRestErrorHandlerFile << "public class RestErrorHandler {\n";
+    osToRestErrorHandlerFile << "public class SampleRestErrorHandler {\n";
     osToRestErrorHandlerFile << "\n";
     osToRestErrorHandlerFile << "\t@ExceptionHandler\n";
     osToRestErrorHandlerFile << "\tpublic ResponseEntity<Map<String, String>> handleSomeException(SomeException exception) {\n";
@@ -132,14 +132,14 @@ void generateRestErrorHandler(string outputDirectory, string projectName) {
 }
 
 /*
-- Path of "SampleValidator.java"
-  - `project-name` > src > main > java > com > app > web > validators > SampleValidator.java
+- Path of "SampleValidator"
+  - `project-name` > src > main > java > com > app > web > validators > SampleValidator
 */
 void generateSampleValidator(string outputDirectory, string projectName) {
     string sampleValidatorPath ("");
     sampleValidatorPath += getProjectPath(outputDirectory, projectName);
     sampleValidatorPath += getWebLayerPath();
-    sampleValidatorPath += "\\validators\\SampleValidator.java";
+    sampleValidatorPath += "\\validators\\SampleValidator";
 
     ofstream osToSampleValidatorFile (sampleValidatorPath);
     osToSampleValidatorFile << "// ABSTRACT EXAMPLE\n";

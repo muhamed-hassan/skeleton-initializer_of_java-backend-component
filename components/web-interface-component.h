@@ -37,7 +37,7 @@ void generateWebLayer(string outputDirectory, string projectName) {
     errHandlerDirectoryPath += getWebLayerPath();
     errHandlerDirectoryPath += "\\error_handler";
     mkdirInProjectLayout(errHandlerDirectoryPath);
-    generateRestErrorHandler(outputDirectory, projectName);
+    generateSampleRestErrorHandler(outputDirectory, projectName);
 
     string exceptionsDirectoryPath ("");
     exceptionsDirectoryPath += projectPath;
