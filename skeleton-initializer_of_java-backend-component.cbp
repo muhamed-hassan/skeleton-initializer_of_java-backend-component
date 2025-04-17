@@ -32,8 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="components/authorization-layer-files.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="components/web-interface-component-files.h" />
-		<Unit filename="components/web-interface-component-with-messaging.h" />
 		<Unit filename="components/web-interface-component.h" />
 		<Unit filename="launcher/launcher.h" />
 		<Unit filename="launcher/project-skeleton.h" />

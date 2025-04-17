@@ -1,3 +1,6 @@
+#ifndef LAUNCHER_H
+#define LAUNCHER_H
+
 #include <iostream>
 #include "project-skeleton.h"
 #include "../components/web-interface-component.h"
@@ -63,3 +66,5 @@ void startComponentGeneration(string componentPurpose, string outputDirectory, s
 
     generatePomEof(outputDirectory, projectName);
 }
+
+#endif

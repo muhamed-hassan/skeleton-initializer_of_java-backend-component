@@ -1,3 +1,6 @@
+#ifndef CMD_ARGS_VALIDATION_H
+#define CMD_ARGS_VALIDATION_H
+
 #include <iostream>
 #include <regex>
 
@@ -24,3 +27,5 @@ void validateCmdArguments(string componentPurpose, string projectName) {
         exit(-1);
     }
 }
+
+#endif

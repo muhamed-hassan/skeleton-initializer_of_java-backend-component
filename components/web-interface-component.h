@@ -1,6 +1,10 @@
+#ifndef WEB_INTERFACE_COMPONENT_H
+#define WEB_INTERFACE_COMPONENT_H
+
 #include <iostream>
 #include "../utils/utils.h"
 #include "web-interface-component-files.h"
+#include "authorization-layer-files.h"
 
 using namespace std;
 
@@ -137,3 +141,5 @@ void generateWebInterfaceComponent(string outputDirectory, string projectName) {
     generatePersistenceLayer(outputDirectory, projectName);
     generateInfrastructureLayer(outputDirectory, projectName);
 }
+
+#endif

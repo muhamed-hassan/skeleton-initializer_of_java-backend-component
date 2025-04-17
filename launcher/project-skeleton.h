@@ -1,3 +1,6 @@
+#ifndef PROJECT_SKELETON_H
+#define PROJECT_SKELETON_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -443,3 +446,5 @@ void generateProfilingConfigurationsOfMb(string outputDirectory, string projectN
     osToProductionProfilePropertiesFile << "# spring.activemq.password=<PASSWORD>\n";
     osToProductionProfilePropertiesFile.close();
 }
+
+#endif
