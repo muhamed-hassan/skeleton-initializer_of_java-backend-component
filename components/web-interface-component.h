@@ -7,13 +7,14 @@ using namespace std;
 /*
   - `project-name` > src > main > java > com > app > web >
        controllers >
-         SampleController.java
+         SampleController
        error_handler >
-         exceptions
-         RestErrorHandler.java
+         exceptions >
+           SampleException
+         SampleRestErrorHandler
        models
          validators >
-           SampleValidator.java
+           SampleValidator
 */
 void generateWebLayer(string outputDirectory, string projectName) {
     cout << "    > web layer" << endl;
@@ -44,6 +45,7 @@ void generateWebLayer(string outputDirectory, string projectName) {
     exceptionsDirectoryPath += getWebLayerPath();
     exceptionsDirectoryPath += "\\error_handler\\exceptions";
     mkdirInProjectLayout(exceptionsDirectoryPath);
+    generateSampleException(outputDirectory, projectName);
 
     string modelsDirectoryPath ("");
     modelsDirectoryPath += projectPath;

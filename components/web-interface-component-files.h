@@ -71,6 +71,34 @@ void generateSampleController(string outputDirectory, string projectName) {
 }
 
 /*
+- Path of "SampleException"
+  - `project-name` > src > main > java > com > app > web > error_handler > exceptions > SampleException
+*/
+void generateSampleException(string outputDirectory, string projectName) {
+    string sampleExceptionPath ("");
+    sampleExceptionPath += getProjectPath(outputDirectory, projectName);
+    sampleExceptionPath += getWebLayerPath();
+    sampleExceptionPath += "\\error_handler\\exceptions\\SampleException";
+
+    ofstream osToSampleExceptionFile (sampleExceptionPath);
+    osToSampleExceptionFile << "// ABSTRACT EXAMPLE\n";
+    osToSampleExceptionFile << "// You can follow this pattern to make your own custom exception type as below to be handled later via RestErrorHandler class\n";
+    osToSampleExceptionFile << "// You shall throw it in business-logic layer (domain package) on certain use cases based on the business need\n";
+    osToSampleExceptionFile << "/*\n";
+    osToSampleExceptionFile << "package com.app.web.error_handler.exceptions;\n";
+    osToSampleExceptionFile << "\n";
+    osToSampleExceptionFile << "public class SampleException extends RuntimeException {\n";
+    osToSampleExceptionFile << "\n";
+    osToSampleExceptionFile << "\tpublic SampleException(Throwable cause) {\n";
+    osToSampleExceptionFile << "\t\tsuper(\"<YOUR_CUSTOM_EXCEPTION_MSG_GOES_HERE>\", cause);\n";
+    osToSampleExceptionFile << "\t}\n";
+    osToSampleExceptionFile << "\n";
+    osToSampleExceptionFile << "}\n";
+    osToSampleExceptionFile << "*/\n";
+    osToSampleExceptionFile.close();
+}
+
+/*
 - Path of "SampleRestErrorHandler"
   - `project-name` > src > main > java > com > app > web > error_handler > SampleRestErrorHandler
 */
