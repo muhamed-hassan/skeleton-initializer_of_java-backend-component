@@ -110,7 +110,7 @@ void generatePersistenceLayer(string outputDirectory, string projectName) {
     repositoriesDirectoryPath += getPersistenceLayerPath();
     repositoriesDirectoryPath += "\\repositories";
     mkdirInProjectLayout(repositoriesDirectoryPath);
-    generateRepositoriesOfAuthorizationLayer(outputDirectory, projectName); // in progress
+    generateRepositoriesOfAuthorizationLayer(outputDirectory, projectName);
 }
 
 /* *********************************************************************************************** */
@@ -136,9 +136,9 @@ void generateWebInterfaceComponent(string outputDirectory, string projectName) {
     cout << "  > app layers of web-interface component:" << endl;
     generateWebLayer(outputDirectory, projectName);
     generateDomainLayer(outputDirectory, projectName);
+    generatePersistenceLayer(outputDirectory, projectName);
 
     // IN PROGRESS
-    generatePersistenceLayer(outputDirectory, projectName);
     generateInfrastructureLayer(outputDirectory, projectName);
 }
 

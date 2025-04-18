@@ -661,4 +661,58 @@ void generateUserEntity(string outputDirectory, string projectName) {
     osToUserEntityFile.close();
 }
 
+/* *********************************************************************************************** */
+
+/*
+- Path of "SystemSecurityConfigurationRepository.java"
+  - `project-name` > src > main > java > com > app > persistence > repositories > SystemSecurityConfigurationRepository.java
+*/
+void generateSystemSecurityConfigurationRepository(string outputDirectory, string projectName) {
+    string systemSecurityConfigurationRepositoryPath ("");
+    systemSecurityConfigurationRepositoryPath += getProjectPath(outputDirectory, projectName);
+    systemSecurityConfigurationRepositoryPath += getPersistenceLayerPath();
+    systemSecurityConfigurationRepositoryPath += "\\repositories\\SystemSecurityConfigurationRepository.java";
+
+    ofstream osToSystemSecurityConfigurationRepositoryFile (systemSecurityConfigurationRepositoryPath);
+    osToSystemSecurityConfigurationRepositoryFile << "package com.app.persistence.repositories;\n";
+    osToSystemSecurityConfigurationRepositoryFile << "\n";
+    osToSystemSecurityConfigurationRepositoryFile << "import org.springframework.data.jpa.repository.JpaRepository;\n";
+    osToSystemSecurityConfigurationRepositoryFile << "import org.springframework.stereotype.Repository;\n";
+    osToSystemSecurityConfigurationRepositoryFile << "\n";
+    osToSystemSecurityConfigurationRepositoryFile << "import com.app.persistence.entities.SystemSecurityConfiguration;\n";
+    osToSystemSecurityConfigurationRepositoryFile << "\n";
+    osToSystemSecurityConfigurationRepositoryFile << "@Repository\n";
+    osToSystemSecurityConfigurationRepositoryFile << "public interface SystemSecurityConfigurationRepository extends JpaRepository<SystemSecurityConfiguration, Integer> {\n";
+    osToSystemSecurityConfigurationRepositoryFile << "\n";
+    osToSystemSecurityConfigurationRepositoryFile << "}\n";
+    osToSystemSecurityConfigurationRepositoryFile.close();
+}
+
+/*
+- Path of "UserRepository.java"
+  - `project-name` > src > main > java > com > app > persistence > repositories > UserRepository.java
+*/
+void generateUserRepository(string outputDirectory, string projectName) {
+    string userRepositoryPath ("");
+    userRepositoryPath += getProjectPath(outputDirectory, projectName);
+    userRepositoryPath += getPersistenceLayerPath();
+    userRepositoryPath += "\\repositories\\UserRepository.java";
+
+    ofstream osToUserRepositoryFile (userRepositoryPath);
+    osToUserRepositoryFile << "package com.app.persistence.repositories;\n";
+    osToUserRepositoryFile << "\n";
+    osToUserRepositoryFile << "import org.springframework.data.jpa.repository.JpaRepository;\n";
+    osToUserRepositoryFile << "import org.springframework.stereotype.Repository;\n";
+    osToUserRepositoryFile << "\n";
+    osToUserRepositoryFile << "import com.app.persistence.entities.User;\n";
+    osToUserRepositoryFile << "\n";
+    osToUserRepositoryFile << "@Repository\n";
+    osToUserRepositoryFile << "public interface UserRepository extends JpaRepository<User, Integer> {\n";
+    osToUserRepositoryFile << "\n";
+    osToUserRepositoryFile << "\tUser findByUsername(String username);\n";
+    osToUserRepositoryFile << "\n";
+    osToUserRepositoryFile << "}\n";
+    osToUserRepositoryFile.close();
+}
+
 #endif

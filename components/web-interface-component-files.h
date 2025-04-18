@@ -225,7 +225,8 @@ void generateEntitiesOfAuthorizationLayer(string outputDirectory, string project
        repositories (add repositories that belongs to authorization-layer from business-component-1)
 */
 void generateRepositoriesOfAuthorizationLayer(string outputDirectory, string projectName) {
-
+    generateSystemSecurityConfigurationRepository(outputDirectory, projectName);
+    generateUserRepository(outputDirectory, projectName);
 }
 
 #endif
