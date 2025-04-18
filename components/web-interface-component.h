@@ -119,6 +119,7 @@ void generatePersistenceLayer(string outputDirectory, string projectName) {
   - `project-name` > src > main > java > com > app > infrastructure >
        configs >
          security >
+           CorsFilter.java
            JwtAuthorizationFilter.java
            SecurityConfig.java
 
