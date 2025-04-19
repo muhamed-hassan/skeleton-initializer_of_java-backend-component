@@ -499,6 +499,8 @@ void generateUserEntity(string outputDirectory, string projectName) {
     ofstream osToUserEntityFile (userEntityPath);
     osToUserEntityFile << "package com.app.persistence.entities;\n";
     osToUserEntityFile << "\n";
+    osToUserEntityFile << "import java.util.Collection;\n";
+    osToUserEntityFile << "\n";
     osToUserEntityFile << "import javax.persistence.Column;\n";
     osToUserEntityFile << "import javax.persistence.Entity;\n";
     osToUserEntityFile << "import javax.persistence.GeneratedValue;\n";
@@ -618,7 +620,7 @@ void generateUserEntity(string outputDirectory, string projectName) {
     osToUserEntityFile << "\t\treturn enabled;\n";
     osToUserEntityFile << "\t}\n";
     osToUserEntityFile << "\n";
-    osToUserEntityFile << "\tpublic void setEnabled(boolean enabled)) {\n";
+    osToUserEntityFile << "\tpublic void setEnabled(boolean enabled) {\n";
     osToUserEntityFile << "\t\tthis.enabled = enabled;\n";
     osToUserEntityFile << "\t}\n";
     osToUserEntityFile << "\n";
