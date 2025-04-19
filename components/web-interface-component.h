@@ -153,11 +153,10 @@ void generateInfrastructureLayer(string outputDirectory, string projectName) {
 
 void generateWebInterfaceComponent(string outputDirectory, string projectName) {
     cout << "  > app layers of web-interface component:" << endl;
+
     generateWebLayer(outputDirectory, projectName);
     generateDomainLayer(outputDirectory, projectName);
     generatePersistenceLayer(outputDirectory, projectName);
-
-    // IN PROGRESS
     generateInfrastructureLayer(outputDirectory, projectName);
 }
 
