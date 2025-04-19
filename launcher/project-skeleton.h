@@ -159,7 +159,10 @@ void generateReadme(string outputDirectory, string projectName) {
 void generatePomBof(string outputDirectory, string projectName) {
     cout << "  > pom.xml BOF" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPomBof (pomPath);
     outputStreamToPomBof << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     outputStreamToPomBof << "<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n";
@@ -185,7 +188,10 @@ void generatePomBof(string outputDirectory, string projectName) {
 void addCoreDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > core-dependency" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
@@ -198,7 +204,10 @@ void addCoreDependencyToPom(string outputDirectory, string projectName) {
 void addSecurityDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > security-dependency" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
@@ -226,7 +235,10 @@ void addSecurityDependencyToPom(string outputDirectory, string projectName) {
 void addWebDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > web-dependency" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
@@ -239,7 +251,10 @@ void addWebDependencyToPom(string outputDirectory, string projectName) {
 void addDbDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > db-dependency" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>mysql</groupId>\n";
@@ -255,7 +270,10 @@ void addDbDependencyToPom(string outputDirectory, string projectName) {
 void addMessagingDependencyToPom(string outputDirectory, string projectName) {
     cout << "      > messaging-dependency" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPom (pomPath, ofstream::app);
     outputStreamToPom << "\n";
     outputStreamToPom << "\t\t<dependency>\n";
@@ -272,7 +290,10 @@ void addMessagingDependencyToPom(string outputDirectory, string projectName) {
 void generatePomEof(string outputDirectory, string projectName) {
     cout << "  > pom.xml EOF" << endl;
 
-    string pomPath = getPomPath();
+    string pomPath ("");
+    pomPath += getProjectPath(outputDirectory, projectName);
+    pomPath += getPomPath();
+
     ofstream outputStreamToPomEof (pomPath, ofstream::app);
     outputStreamToPomEof << "\t</dependencies>\n";
     outputStreamToPomEof << "\n";
