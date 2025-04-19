@@ -715,4 +715,188 @@ void generateUserRepository(string outputDirectory, string projectName) {
     osToUserRepositoryFile.close();
 }
 
+/* *********************************************************************************************** */
+
+/*
+- Path of "CorsFilter.java"
+  - `project-name` > src > main > java > com > app > infrastructure > configs > security > CorsFilter.java
+*/
+void generateCorsFilter(string outputDirectory, string projectName) {
+    string corsFilterPath ("");
+    corsFilterPath += getProjectPath(outputDirectory, projectName);
+    corsFilterPath += getInfrastructureLayerPath();
+    corsFilterPath += "\\configs\\security\\CorsFilter.java";
+
+    ofstream osToCorsFilterFile (corsFilterPath);
+    osToCorsFilterFile << "package com.app.infrastructure.configs.security;\n";
+    osToCorsFilterFile << "\n";
+    osToCorsFilterFile << "import java.io.IOException;\n";
+    osToCorsFilterFile << "\n";
+    osToCorsFilterFile << "import javax.servlet.FilterChain;\n";
+    osToCorsFilterFile << "import javax.servlet.ServletException;\n";
+    osToCorsFilterFile << "import javax.servlet.http.HttpServletRequest;\n";
+    osToCorsFilterFile << "import javax.servlet.http.HttpServletResponse;\n";
+    osToCorsFilterFile << "\n";
+    osToCorsFilterFile << "import org.springframework.stereotype.Component;\n";
+    osToCorsFilterFile << "import org.springframework.web.filter.OncePerRequestFilter;\n";
+    osToCorsFilterFile << "\n";
+    osToCorsFilterFile << "@Component\n";
+    osToCorsFilterFile << "public class CorsFilter extends OncePerRequestFilter {\n";
+    osToCorsFilterFile << "\n";
+    osToCorsFilterFile << "\t@Override\n";
+    osToCorsFilterFile << "\tprotected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)\n";
+    osToCorsFilterFile << "\t\t\tthrows ServletException, IOException {\n";
+    osToCorsFilterFile << "\t\tresponse.setHeader(\"Access-Control-Allow-Origin\", \"*\");\n";
+    osToCorsFilterFile << "\t\tresponse.setHeader(\"Access-Control-Allow-Methods\", \"GET, POST, PUT, DELETE, OPTIONS\");\n";
+    osToCorsFilterFile << "\t\tresponse.setHeader(\"Access-Control-Allow-Headers\", \"*\");\n";
+    osToCorsFilterFile << "\t\tif (\"OPTIONS\".equals(request.getMethod())) {\n";
+    osToCorsFilterFile << "\t\t\tresponse.setStatus(HttpServletResponse.SC_OK);\n";
+    osToCorsFilterFile << "\t\t} else { \n";
+    osToCorsFilterFile << "\t\t\tfilterChain.doFilter(request, response);\n";
+    osToCorsFilterFile << "\t\t}\n";
+    osToCorsFilterFile << "\t}\n";
+    osToCorsFilterFile << "\n";
+    osToCorsFilterFile << "}\n";
+}
+
+/*
+- Path of "JwtAuthorizationFilter.java"
+  - `project-name` > src > main > java > com > app > infrastructure > configs > security > JwtAuthorizationFilter.java
+*/
+void generateJwtAuthorizationFilter(string outputDirectory, string projectName) {
+    string jwtAuthorizationFilterPath ("");
+    jwtAuthorizationFilterPath += getProjectPath(outputDirectory, projectName);
+    jwtAuthorizationFilterPath += getInfrastructureLayerPath();
+    jwtAuthorizationFilterPath += "\\configs\\security\\JwtAuthorizationFilter.java";
+
+    ofstream osToJwtAuthorizationFilterFile (jwtAuthorizationFilterPath);
+    osToJwtAuthorizationFilterFile << "package com.app.infrastructure.configs.security;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "import java.io.IOException;\n";
+    osToJwtAuthorizationFilterFile << "import java.util.ArrayList;\n";
+    osToJwtAuthorizationFilterFile << "import java.util.Iterator;\n";
+    osToJwtAuthorizationFilterFile << "import java.util.List;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "import javax.servlet.FilterChain;\n";
+    osToJwtAuthorizationFilterFile << "import javax.servlet.ServletException;\n";
+    osToJwtAuthorizationFilterFile << "import javax.servlet.http.HttpServletRequest;\n";
+    osToJwtAuthorizationFilterFile << "import javax.servlet.http.HttpServletResponse;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;\n";
+    osToJwtAuthorizationFilterFile << "import org.springframework.security.core.authority.SimpleGrantedAuthority;\n";
+    osToJwtAuthorizationFilterFile << "import org.springframework.security.core.context.SecurityContextHolder;\n";
+    osToJwtAuthorizationFilterFile << "import org.springframework.web.filter.OncePerRequestFilter;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "import com.app.persistence.entities.SystemSecurityConfiguration;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "import io.jsonwebtoken.Claims;\n";
+    osToJwtAuthorizationFilterFile << "import io.jsonwebtoken.Jws;\n";
+    osToJwtAuthorizationFilterFile << "import io.jsonwebtoken.Jwts;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "public class JwtAuthorizationFilter extends OncePerRequestFilter {\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\tprivate final SystemSecurityConfiguration systemSecurityConfiguration;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\tpublic JwtAuthorizationFilter(SystemSecurityConfiguration systemSecurityConfiguration) {\n";
+    osToJwtAuthorizationFilterFile << "\t\tthis.systemSecurityConfiguration = systemSecurityConfiguration;\n";
+    osToJwtAuthorizationFilterFile << "\t}\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t@Override\n";
+    osToJwtAuthorizationFilterFile << "\tprotected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tthrows ServletException, IOException {\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\tString authorizationHeaderValue = request.getHeader(\"Authorization\");\n";
+    osToJwtAuthorizationFilterFile << "\t\tif (authorizationHeaderValue != null && authorizationHeaderValue.length() > 0 && authorizationHeaderValue.startsWith(\"Bearer \")) {\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tString token = authorizationHeaderValue.replace(\"Bearer \", \"\");\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tJws<Claims> parsedToken = Jwts.parserBuilder()\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t\t\t\t\t\t\t\t\t.setSigningKey(systemSecurityConfiguration.getJwtSecret().getBytes())\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t\t\t\t\t\t\t\t\t.build()\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t\t\t\t\t\t\t\t\t.parseClaimsJws(token);\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tString username = parsedToken.getBody().getSubject();\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tList<String> roles = (List<String>) parsedToken.getBody().get(\"rol\");\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tList<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tIterator<String> iterator = roles.iterator();\n";
+    osToJwtAuthorizationFilterFile << "\t\t\twhile (iterator.hasNext()) {\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t\tString currentElement = iterator.next();\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t\tSimpleGrantedAuthority authority = new SimpleGrantedAuthority(currentElement);\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t\tauthorities.add(authority);\n";
+    osToJwtAuthorizationFilterFile << "\t\t\t}\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tif (username.length() == 0 && authorities.isEmpty()) return;\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\t\tSecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, authorities));\n";
+    osToJwtAuthorizationFilterFile << "\t\t}\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "\t\tfilterChain.doFilter(request, response);\n";
+    osToJwtAuthorizationFilterFile << "\t}\n";
+    osToJwtAuthorizationFilterFile << "\n";
+    osToJwtAuthorizationFilterFile << "}\n";
+}
+
+/*
+- Path of "SecurityConfig.java"
+  - `project-name` > src > main > java > com > app > infrastructure > configs > security > SecurityConfig.java
+*/
+void generateSecurityConfig(string outputDirectory, string projectName) {
+    string securityConfigPath ("");
+    securityConfigPath += getProjectPath(outputDirectory, projectName);
+    securityConfigPath += getInfrastructureLayerPath();
+    securityConfigPath += "\\configs\\security\\SecurityConfig.java";
+
+    ofstream osToSecurityConfigFile (securityConfigPath);
+    osToSecurityConfigFile << "package com.app.infrastructure.configs.security;\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "import org.springframework.beans.factory.annotation.Autowired;\n";
+    osToSecurityConfigFile << "import org.springframework.context.annotation.Bean;\n";
+    osToSecurityConfigFile << "import org.springframework.context.annotation.Configuration;\n";
+    osToSecurityConfigFile << "import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;\n";
+    osToSecurityConfigFile << "import org.springframework.security.config.annotation.web.builders.HttpSecurity;\n";
+    osToSecurityConfigFile << "import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;\n";
+    osToSecurityConfigFile << "import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;\n";
+    osToSecurityConfigFile << "import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;\n";
+    osToSecurityConfigFile << "import org.springframework.security.crypto.password.PasswordEncoder;\n";
+    osToSecurityConfigFile << "import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "import com.app.domain.UserService;\n";
+    osToSecurityConfigFile << "import com.app.persistence.entities.SystemSecurityConfiguration;\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "@Configuration\n";
+    osToSecurityConfigFile << "@EnableWebSecurity\n";
+    osToSecurityConfigFile << "public class SecurityConfig extends WebSecurityConfigurerAdapter {\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t@Autowired\n";
+    osToSecurityConfigFile << "\tprivate UserService userService;\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t@Autowired\n";
+    osToSecurityConfigFile << "\tprivate PasswordEncoder passwordEncoder;\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t@Bean\n";
+    osToSecurityConfigFile << "\tpublic PasswordEncoder passwordEncoder() {\n";
+    osToSecurityConfigFile << "\t\treturn new BCryptPasswordEncoder();\n";
+    osToSecurityConfigFile << "\t}\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t@Override\n";
+    osToSecurityConfigFile << "\tprotected void configure(HttpSecurity http) throws Exception {\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t\tSystemSecurityConfiguration systemSecurityConfiguration = userService.loadJwtConfigs();\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t\thttp.csrf().disable()\n";
+    osToSecurityConfigFile << "\t\t\t.authorizeRequests()\n";
+    osToSecurityConfigFile << "\t\t\t.anyRequest().authenticated()\n";
+    osToSecurityConfigFile << "\t\t\t.and()\n";
+    osToSecurityConfigFile << "\t\t\t.addFilterAfter(new JwtAuthorizationFilter(systemSecurityConfiguration), BasicAuthenticationFilter.class);\n";
+    osToSecurityConfigFile << "\t}\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "\t@Override\n";
+    osToSecurityConfigFile << "\tpublic void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {\n";
+    osToSecurityConfigFile << "\t\tauthenticationManagerBuilder.userDetailsService(userService)\n";
+    osToSecurityConfigFile << "\t\t\t\t\t\t\t\t\t.passwordEncoder(passwordEncoder);\n";
+    osToSecurityConfigFile << "\t}\n";
+    osToSecurityConfigFile << "\n";
+    osToSecurityConfigFile << "}\n";
+}
+
 #endif

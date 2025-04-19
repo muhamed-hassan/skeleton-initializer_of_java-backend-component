@@ -79,4 +79,10 @@ string getPersistenceLayerPath() {
     return persistenceLayerPath;
 }
 
+string getInfrastructureLayerPath() {
+    string infrastructureLayerPath ("");
+    infrastructureLayerPath += getJavaDirectoryPath() + "\\com\\app\\infrastructure";
+    return infrastructureLayerPath;
+}
+
 #endif

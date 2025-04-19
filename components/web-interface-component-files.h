@@ -229,4 +229,18 @@ void generateRepositoriesOfAuthorizationLayer(string outputDirectory, string pro
     generateUserRepository(outputDirectory, projectName);
 }
 
+/*
+  - `project-name` > src > main > java > com > app > infrastructure >
+       configs >
+         security >
+           CorsFilter.java
+           JwtAuthorizationFilter.java
+           SecurityConfig.java
+*/
+void generateSecurityConfigurationsOfBusinessComponent(string outputDirectory, string projectName) {
+    generateCorsFilter(outputDirectory, projectName);
+    generateJwtAuthorizationFilter(outputDirectory, projectName);
+    generateSecurityConfig(outputDirectory, projectName);
+}
+
 #endif

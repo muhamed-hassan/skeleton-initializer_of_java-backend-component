@@ -128,6 +128,24 @@ Take a copy from "business-component-1"
 void generateInfrastructureLayer(string outputDirectory, string projectName) {
     cout << "    > infrastructure layer" << endl;
 
+    string projectPath = getProjectPath(outputDirectory, projectName);
+
+    string infrastructureDirectoryPath ("");
+    infrastructureDirectoryPath += projectPath;
+    infrastructureDirectoryPath += getInfrastructureLayerPath();
+    mkdirInProjectLayout(infrastructureDirectoryPath);
+
+    string configsDirectoryPath ("");
+    configsDirectoryPath += projectPath;
+    configsDirectoryPath += getInfrastructureLayerPath() + "\\configs";
+    mkdirInProjectLayout(configsDirectoryPath);
+
+    string securityDirectoryPath ("");
+    securityDirectoryPath += projectPath;
+    securityDirectoryPath += getInfrastructureLayerPath() + "\\configs\\security";
+    mkdirInProjectLayout(securityDirectoryPath);
+
+    generateSecurityConfigurationsOfBusinessComponent(outputDirectory, projectName);
 }
 
 /* *********************************************************************************************** */
