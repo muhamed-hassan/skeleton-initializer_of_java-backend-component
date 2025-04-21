@@ -1,7 +1,6 @@
-#ifndef WEB_INTERFACE_COMPONENT_FILES_H
-#define WEB_INTERFACE_COMPONENT_FILES_H
+#ifndef WEB_INTERFACE_FILES_H
+#define WEB_INTERFACE_FILES_H
 
-#include "../utils/utils.h"
 #include "authorization-layer-files.h"
 
 /*

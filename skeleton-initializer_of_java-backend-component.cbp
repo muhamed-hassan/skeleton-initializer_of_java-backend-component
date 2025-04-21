@@ -35,8 +35,19 @@
 		<Unit filename="components/authorization-layer-files.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="components/web-interface-component-files.h" />
 		<Unit filename="components/web-interface-component.h" />
+		<Unit filename="components/web-interface-files.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="components/web-interface-with-messaging-component-files.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="components/web-interface-with-messaging-component.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="components/web-interface.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="launcher/launcher.h" />
 		<Unit filename="launcher/project-skeleton.h" />
 		<Unit filename="main.cpp" />

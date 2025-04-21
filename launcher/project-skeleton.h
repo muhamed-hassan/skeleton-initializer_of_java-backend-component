@@ -264,6 +264,7 @@ void addDbDependencyToPom(string outputDirectory, string projectName) {
     outputStreamToPom << "\t\t\t<groupId>org.springframework.boot</groupId>\n";
     outputStreamToPom << "\t\t\t<artifactId>spring-boot-starter-data-jpa</artifactId>\n";
     outputStreamToPom << "\t\t</dependency>\n";
+    outputStreamToPom << "\n";
     outputStreamToPom.close();
 }
 
@@ -275,7 +276,6 @@ void addMessagingDependencyToPom(string outputDirectory, string projectName) {
     pomPath += getPomPath();
 
     ofstream outputStreamToPom (pomPath, ofstream::app);
-    outputStreamToPom << "\n";
     outputStreamToPom << "\t\t<dependency>\n";
     outputStreamToPom << "\t\t\t<groupId>org.springframework</groupId>\n";
     outputStreamToPom << "\t\t\t<artifactId>spring-jms</artifactId>\n";
@@ -316,6 +316,12 @@ void generatePomEof(string outputDirectory, string projectName) {
     outputStreamToPomEof << "\n";
     outputStreamToPomEof << "</project>\n";
     outputStreamToPomEof.close();
+}
+
+void addDependenciesOfWebInterfaceComponent(string outputDirectory, string projectName) {
+    addSecurityDependencyToPom(outputDirectory, projectName);
+    addWebDependencyToPom(outputDirectory, projectName);
+    addDbDependencyToPom(outputDirectory, projectName);
 }
 
 /* *********************************************************************************************** */
