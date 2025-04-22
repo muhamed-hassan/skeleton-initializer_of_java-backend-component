@@ -759,6 +759,7 @@ void generateCorsFilter(string outputDirectory, string projectName) {
     osToCorsFilterFile << "\t}\n";
     osToCorsFilterFile << "\n";
     osToCorsFilterFile << "}\n";
+    osToCorsFilterFile.close();
 }
 
 /*
@@ -836,6 +837,7 @@ void generateJwtAuthorizationFilter(string outputDirectory, string projectName) 
     osToJwtAuthorizationFilterFile << "\t}\n";
     osToJwtAuthorizationFilterFile << "\n";
     osToJwtAuthorizationFilterFile << "}\n";
+    osToJwtAuthorizationFilterFile.close();
 }
 
 /*
@@ -899,6 +901,7 @@ void generateSecurityConfig(string outputDirectory, string projectName) {
     osToSecurityConfigFile << "\t}\n";
     osToSecurityConfigFile << "\n";
     osToSecurityConfigFile << "}\n";
+    osToSecurityConfigFile.close();
 }
 
 #endif

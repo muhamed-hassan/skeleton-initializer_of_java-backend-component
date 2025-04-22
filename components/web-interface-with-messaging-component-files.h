@@ -86,4 +86,101 @@ void generateSampleProducer(string outputDirectory, string projectName) {
     osToSampleProducerFile.close();
 }
 
+/* *********************************************************************************************** */
+
+/*
+- Path of "JmsConfig.java"
+  - `project-name` > src > main > java > com > app > infrastructure > configs > messaging > JmsConfig.java
+*/
+void generateJmsConfig(string outputDirectory, string projectName) {
+    string jmsConfigPath ("");
+    jmsConfigPath += getProjectPath(outputDirectory, projectName);
+    jmsConfigPath += getInfrastructureLayerPath();
+    jmsConfigPath += "\\configs\\messaging\\JmsConfig.java";
+
+    ofstream osToJmsConfigFile (jmsConfigPath);
+    osToJmsConfigFile << "package com.app.infrastructure.configs.messaging;\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "import javax.jms.ConnectionFactory;\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "import org.springframework.beans.factory.annotation.Autowired;\n";
+    osToJmsConfigFile << "import org.springframework.beans.factory.annotation.Value;\n";
+    osToJmsConfigFile << "import org.springframework.context.annotation.Bean;\n";
+    osToJmsConfigFile << "import org.springframework.context.annotation.Configuration;\n";
+    osToJmsConfigFile << "import org.springframework.jms.core.JmsTemplate;\n";
+    osToJmsConfigFile << "import org.springframework.jms.listener.DefaultMessageListenerContainer;\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "@Configuration\n";
+    osToJmsConfigFile << "public class JmsConfig {\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t// Inject the value of the used queue here\n";
+    osToJmsConfigFile << "\t// \"jms.activemq.queue\" property is written into application.properties\n";
+    osToJmsConfigFile << "\t@Value(\"${jms.activemq.queue}\")\n";
+    osToJmsConfigFile << "\tprivate String queueName;\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t/*\n";
+    osToJmsConfigFile << "\t# Inject a reference to each consumer here:\n";
+    osToJmsConfigFile << "\t===========================================\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Autowired\n";
+    osToJmsConfigFile << "\tprivate MessageListener1 messageListener1;\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Autowired\n";
+    osToJmsConfigFile << "\tprivate MessageListener2 messageListener2;\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Autowired\n";
+    osToJmsConfigFile << "\tprivate MessageListener3 messageListener3;\n";
+    osToJmsConfigFile << "\t*/\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t/*\n";
+    osToJmsConfigFile << "\t# Add bean definition to each consumer here:\n";
+    osToJmsConfigFile << "\t============================================\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Bean\n";
+    osToJmsConfigFile << "\tpublic MessageListener1 messageListener1() {\n";
+    osToJmsConfigFile << "\t\treturn new MessageListener1();\n";
+    osToJmsConfigFile << "\t}\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Bean\n";
+    osToJmsConfigFile << "\tpublic MessageListener2 messageListener2() {\n";
+    osToJmsConfigFile << "\t\treturn new MessageListener2();\n";
+    osToJmsConfigFile << "\t}\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Bean\n";
+    osToJmsConfigFile << "\tpublic MessageListener3 messageListener3() {\n";
+    osToJmsConfigFile << "\t\treturn new MessageListener3();\n";
+    osToJmsConfigFile << "\t}\n";
+    osToJmsConfigFile << "\t*/\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Bean\n";
+    osToJmsConfigFile << "\tpublic DefaultMessageListenerContainer defaultMessageListenerContainer(ConnectionFactory connectionFactory) {\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t\tDefaultMessageListenerContainer defaultMessageListenerContainer = new DefaultMessageListenerContainer();\n";
+    osToJmsConfigFile << "\t\tdefaultMessageListenerContainer.setConnectionFactory(connectionFactory);\n";
+    osToJmsConfigFile << "\t\tdefaultMessageListenerContainer.setDestinationName(queueName);\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t\t/*\n";
+    osToJmsConfigFile << "\t\t# Set a reference for each consumer here:\n";
+    osToJmsConfigFile << "\t\t=========================================\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t\tdefaultMessageListenerContainer.setMessageListener(messageListener1);\n";
+    osToJmsConfigFile << "\t\tdefaultMessageListenerContainer.setMessageListener(messageListener2);\n";
+    osToJmsConfigFile << "\t\tdefaultMessageListenerContainer.setMessageListener(messageListener3);\n";
+    osToJmsConfigFile << "\t\t*/\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t\treturn defaultMessageListenerContainer;\n";
+    osToJmsConfigFile << "\t}\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "\t@Bean\n";
+    osToJmsConfigFile << "\tpublic JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {\n";
+    osToJmsConfigFile << "\t\tJmsTemplate jmsTemplate = new JmsTemplate();\n";
+    osToJmsConfigFile << "\t\tjmsTemplate.setConnectionFactory(connectionFactory);\n";
+    osToJmsConfigFile << "\t\tjmsTemplate.setDefaultDestinationName(queueName);\n";
+    osToJmsConfigFile << "\t\treturn jmsTemplate;\n";
+    osToJmsConfigFile << "\t}\n";
+    osToJmsConfigFile << "\n";
+    osToJmsConfigFile << "}\n";
+    osToJmsConfigFile.close();
+}
+
 #endif

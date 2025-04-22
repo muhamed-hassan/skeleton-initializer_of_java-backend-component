@@ -58,8 +58,7 @@ void generateInfrastructureLayerWithMessaging(string outputDirectory, string pro
     messagingDirectoryPath += getProjectPath(outputDirectory, projectName);
     messagingDirectoryPath += getInfrastructureLayerPath() + "\\configs\\messaging";
     mkdirInProjectLayout(messagingDirectoryPath);
-
-    // TODO: generate JMSConfig.java
+    generateJmsConfig(outputDirectory, projectName);
 }
 
 /* *********************************************************************************************** */
@@ -71,8 +70,6 @@ void generateWebInterfaceComponentWithMessaging(string outputDirectory, string p
     generateWebLayer(outputDirectory, projectName);
     generateDomainLayerWithMessaging(outputDirectory, projectName);
     generatePersistenceLayer(outputDirectory, projectName);
-
-    // IN PROGRESS
     generateInfrastructureLayerWithMessaging(outputDirectory, projectName);
 }
 

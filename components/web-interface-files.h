@@ -31,7 +31,7 @@ void generateSampleController(string outputDirectory, string projectName) {
     osToSampleControllerFile << "import com.app.web.validators.SampleValidator;\n";
     osToSampleControllerFile << "\n";
     osToSampleControllerFile << "@RestController\n";
-    osToSampleControllerFile << "@RequestMapping(\"v1/PLURAL-NAME-OF-THE-RESOURCE-THAT-SHOULD-BE-HANDLED-BY-THIS-CONTROLLER\")\n";
+    osToSampleControllerFile << "@RequestMapping(\"PLURAL-NAME-OF-THE-RESOURCE-THAT-SHOULD-BE-HANDLED-BY-THIS-CONTROLLER\")\n";
     osToSampleControllerFile << "public class SampleController {\n";
     osToSampleControllerFile << "\n";
     osToSampleControllerFile << "\t@Autowired\n";
